@@ -19,3 +19,14 @@ custom:
   contextPath: ${self:custom.serviceName}
   baseApi: ${self:custom.contextPath}
   funcDir: src/framework/functions
+
+functions:
+  createTransaction:
+    handler: ${self:custom.funcDir}/createTransaction.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/
+          method: post
+          cors:
+            origin: '*'
+            headers: '*'
