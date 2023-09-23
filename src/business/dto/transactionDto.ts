@@ -1,3 +1,4 @@
+import { IGetTransactionEntity } from "../../domain/entities/GetTransactionEntity"
 import { ITransactionEntity } from "../../domain/entities/transactionEntity"
 import { Either } from "../../framework/shared/either"
 import { IError } from "../../framework/shared/iError"
@@ -10,4 +11,9 @@ export interface InputCreateTransactionDto {
   date?: Date
 }
 
+export interface InputGetTransactionDto {
+  transactionId: string
+}
+
 export type OutputCreateTransactionDto = Either<IError, ITransactionEntity>
+export type OutputGetTransactionDto = Either<IError, IGetTransactionEntity>
