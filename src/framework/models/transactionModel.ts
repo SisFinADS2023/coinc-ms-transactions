@@ -8,6 +8,8 @@ interface ITransaction {
   valueCents: Double
   categoryId: UUID
   date: Date
+  createdAt: Date
+  updatedAt: Date
 }
 
 const transactionSchema = new Schema<ITransaction> (
@@ -37,7 +39,9 @@ const transactionSchema = new Schema<ITransaction> (
       type: Date,
       required: true,
       default: Date.now()
-    }
+    },
+    createdAt: {},
+    updatedAt: {}
   },
   {
     timestamps: true
