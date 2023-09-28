@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsString, isUUID, IsUUID } from 'class-validator'
+import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID } from 'class-validator'
 
 import { ITransactionEntity } from '../../domain/entities/transactionEntity'
 import { Either } from '../../framework/shared/either'
@@ -16,11 +16,11 @@ export class InputCreateTransaction extends Validatable<InputCreateTransaction> 
 
   @IsNotEmpty()
   @IsNumber()
-  valueCents!: bigint
+  valueCents!: Number
 
   @IsOptional()
   @IsUUID()
-  categoryId!: bigint
+  categoryId!: string
 
   @IsOptional()
   @IsDate()

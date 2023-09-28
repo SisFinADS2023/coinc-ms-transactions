@@ -5,7 +5,7 @@ import { IError } from "../../framework/shared/iError"
 export interface InputCreateTransactionDto {
   userId: string
   name: string
-  valueCents: bigint
+  valueCents: Number
   categoryId?: string
   date?: Date
 }

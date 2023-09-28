@@ -5,7 +5,7 @@ interface ITransaction {
   transactionId: UUID
   userId: UUID
   name: string
-  valueCents: Double
+  valueCents: Number
   categoryId: UUID
   date: Date
   createdAt: Date
