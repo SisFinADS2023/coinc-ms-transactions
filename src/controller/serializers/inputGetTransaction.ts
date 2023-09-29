@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsUUID } from 'class-validator'
-import { IGetTransactionEntity } from '../../domain/entities/GetTransactionEntity'
+import { ITransactionEntity } from '../../domain/entities/transactionEntity'
 
 import { Either } from '../../framework/shared/either'
 import { IError } from '../../framework/shared/iError'
@@ -11,4 +11,4 @@ export class InputGetTransaction extends Validatable<InputGetTransaction> {
   transactionId!: string
 }
 
-export type OutputGetTransaction = Either<IError, IGetTransactionEntity>
+export type OutputGetTransaction = Either<IError, ITransactionEntity>

@@ -3,7 +3,6 @@ import { inject, injectable } from "inversify"
 import { TransactionModel } from "../models/transactionModel"
 import { ITransactionEntity } from "../../domain/entities/transactionEntity"
 import { ITransactionRepository } from "../../business/repositories/iTransactionRepository"
-import { IGetTransactionEntity } from "../../domain/entities/GetTransactionEntity"
 
 @injectable()
 export class TransactionRepository implements ITransactionRepository {
@@ -37,16 +36,16 @@ export class TransactionRepository implements ITransactionRepository {
     return createTransactionReturn
   }
 
-  async get(id: string): Promise<IGetTransactionEntity> {
+  async get(id: string): Promise<ITransactionEntity> {
     const getResponse = await this.transactionModel.findOne({ transactionId: id })
     console.log('get::response => ', getResponse)
 
     const getTransactionReturn = {
       transactionId: id,
-      userId: getResponse?.userId,
-      name: getResponse?.name,
-      valueCents: getResponse?.valueCents,
-      categoryId: getResponse?.categoryId,
+      userId: String(getResponse?.userId),
+      name: String(getResponse?.name),
+      valueCents: Number(getResponse?.valueCents),
+      categoryId: getResponse?.categoryId || undefined,
       date: getResponse?.date,
       createdAt: getResponse?.createdAt,
       updatedAt: getResponse?.updatedAt
