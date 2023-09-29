@@ -1,12 +1,10 @@
-import { Double, UUID } from "mongodb"
-import { Schema, model } from "mongoose"
+import { Schema, model, ObjectId } from "mongoose"
 
 interface ITransaction {
-  transactionId: UUID
-  userId: UUID
-  name: string
+  userId: ObjectId
+  name: String
   valueCents: Number
-  categoryId: UUID
+  categoryId: ObjectId
   date: Date
   createdAt: Date
   updatedAt: Date
@@ -14,13 +12,8 @@ interface ITransaction {
 
 const transactionSchema = new Schema<ITransaction> (
   {
-    transactionId: {
-      type: Schema.Types.UUID,
-      index: true,
-      required: true
-    },
     userId: {
-      type: Schema.Types.UUID,
+      type: String,
       required: true
     },
     name: {
@@ -32,7 +25,7 @@ const transactionSchema = new Schema<ITransaction> (
       required: true
     },
     categoryId: {
-      type: Schema.Types.UUID,
+      type: String,
       required: false
     },
     date: {
