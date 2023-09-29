@@ -35,4 +35,12 @@ export class TransactionRepository implements ITransactionRepository {
 
     return createTransactionReturn
   }
+
+  async delete(transactionId: String): Promise<any> {
+    const createResponse = await this.transactionModel.deleteOne({
+      transactionId: transactionId
+    })
+    
+    console.log('delete::response => ', createResponse.deletedCount)
+  }
 }
