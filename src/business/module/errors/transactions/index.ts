@@ -5,8 +5,13 @@ export const TransactionCreationFailed = {
 }
 
 export const TransactionDeleteFailed = {
-  code: 'TDF-001',
+  code: 'TDF-002',
   message: 'Transaction delete failed',
   shortMessage: 'transactionDeleteFailed'
+}
+export const TransactionNotFound = {
+  code: 'TNF-003',
+  message: 'Transaction not found',
+  shortMessage: 'transactionNotFound'
 }
 
