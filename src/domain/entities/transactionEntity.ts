@@ -8,7 +8,7 @@ export interface ITransactionEntity {
   transactionId?: string
   userId: string
   name: string
-  valueCents: bigint
+  valueCents: Number
   categoryId?: string
   date?: Date
   createdAt?: Date

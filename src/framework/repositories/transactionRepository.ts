@@ -32,7 +32,7 @@ export class TransactionRepository implements ITransactionRepository {
       createdAt: createResponse.createdAt,
       updatedAt: createResponse.updatedAt
     }
-
+    
     return createTransactionReturn
   }
 
@@ -46,5 +46,23 @@ export class TransactionRepository implements ITransactionRepository {
       return true
     }
     return false
+  }
+  
+  async get(id: string): Promise<ITransactionEntity> {
+    const getResponse = await this.transactionModel.findOne({ transactionId: id })
+    console.log('get::response => ', getResponse)
+
+    const getTransactionReturn = {
+      transactionId: id,
+      userId: String(getResponse?.userId),
+      name: String(getResponse?.name),
+      valueCents: Number(getResponse?.valueCents),
+      categoryId: getResponse?.categoryId || undefined,
+      date: getResponse?.date,
+      createdAt: getResponse?.createdAt,
+      updatedAt: getResponse?.updatedAt
+    }
+
+    return getTransactionReturn
   }
 }
