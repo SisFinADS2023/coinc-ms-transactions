@@ -36,6 +36,18 @@ export class TransactionRepository implements ITransactionRepository {
     return createTransactionReturn
   }
 
+  async delete(transactionId: String): Promise<boolean> {
+    const deleteResponse = await this.transactionModel.deleteOne({
+      transactionId: transactionId
+    })
+    
+    console.log('delete::response => ', deleteResponse.deletedCount)
+    if (deleteResponse.deletedCount == 1){
+      return true
+    }
+    return false
+  }
+  
   async get(id: string): Promise<ITransactionEntity> {
     const getResponse = await this.transactionModel.findOne({ transactionId: id })
     console.log('get::response => ', getResponse)

@@ -13,6 +13,10 @@ export interface InputCreateTransactionDto {
 export interface InputGetTransactionDto {
   transactionId: string
 }
+export interface InputDeleteTransactionDto {
+  transactionId: string
+}
 
 export type OutputCreateTransactionDto = Either<IError, ITransactionEntity>
+export type OutputDeleteTransactionDto = Either<IError, boolean>
 export type OutputGetTransactionDto = Either<IError, ITransactionEntity>

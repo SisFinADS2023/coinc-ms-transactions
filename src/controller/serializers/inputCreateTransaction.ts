@@ -20,11 +20,11 @@ export class InputCreateTransaction extends Validatable<InputCreateTransaction> 
 
   @IsOptional()
   @IsUUID()
-  categoryId!: bigint
+  categoryId!: string
 
   @IsOptional()
   @IsDate()
-  date!: string
+  date!: Date
 }
 
 export type OutputCreateTransaction = Either<IError, ITransactionEntity>
