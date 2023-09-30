@@ -39,7 +39,7 @@ export const httpResponse = {
   notFound: (body: any) => {
     return {
       statusCode: httpCodes.notFound,
-      body: body ? JSON.stringify(body) : undefined,
+      body: JSON.stringify(body),
     }
   },
 

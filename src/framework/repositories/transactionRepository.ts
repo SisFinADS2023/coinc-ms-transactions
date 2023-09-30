@@ -1,3 +1,5 @@
+import   '../utility/database'
+
 import { inject, injectable } from "inversify"
 
 import { TransactionModel } from "../models/transactionModel"
@@ -32,7 +34,15 @@ export class TransactionRepository implements ITransactionRepository {
       createdAt: createResponse.createdAt,
       updatedAt: createResponse.updatedAt
     }
-
+    
     return createTransactionReturn
+  }
+
+  async get(transactionId: string): Promise<ITransactionEntity> {
+    const getResponse = await this.transactionModel.findById({ _id: transactionId }).select("-__v")
+
+    console.log('get::response => ', getResponse)
+
+    return getResponse as ITransactionEntity
   }
 }

@@ -1,16 +1,7 @@
-import { Schema, model, ObjectId } from "mongoose"
+import { Schema, model, ObjectId, Model } from "mongoose"
+import { ITransactionEntity } from "../../domain/entities/transactionEntity"
 
-interface ITransaction {
-  userId: ObjectId
-  name: String
-  valueCents: Number
-  categoryId: ObjectId
-  date: Date
-  createdAt: Date
-  updatedAt: Date
-}
-
-const transactionSchema = new Schema<ITransaction> (
+const transactionSchema = new Schema<ITransactionEntity> (
   {
     userId: {
       type: String,
@@ -41,4 +32,4 @@ const transactionSchema = new Schema<ITransaction> (
   }
 )
 
-export const TransactionModel = model<ITransaction>('Transactions', transactionSchema)
+export const TransactionModel: Model<ITransactionEntity> = model<ITransactionEntity>('Transactions', transactionSchema)

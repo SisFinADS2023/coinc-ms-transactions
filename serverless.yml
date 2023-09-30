@@ -30,3 +30,12 @@ functions:
           cors:
             origin: '*'
             headers: '*'
+  getTransaction:
+    handler: ${self:custom.funcDir}/getTransaction.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/{transactionId}
+          method: get
+          cors:
+            origin: '*'
+            headers: '*'

@@ -10,4 +10,9 @@ export interface InputCreateTransactionDto {
   date?: Date
 }
 
+export interface InputGetTransactionDto {
+  transactionId: string
+}
+
 export type OutputCreateTransactionDto = Either<IError, ITransactionEntity>
+export type OutputGetTransactionDto = Either<IError, ITransactionEntity>
