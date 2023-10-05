@@ -12,7 +12,6 @@ export class GetTransactionOperator extends AbstractOperator<InputGetTransaction
   }
 
   protected async run(input: InputGetTransaction): Promise<OutputGetTransaction> {
-    console.log('Chegou Aqui getTransactionOperator')
     const result = await this.getTransactionUseCase.exec(input)
 
     if (result.isLeft()) {

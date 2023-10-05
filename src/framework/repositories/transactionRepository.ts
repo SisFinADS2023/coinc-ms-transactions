@@ -1,3 +1,5 @@
+import   '../utility/database'
+
 import { inject, injectable } from "inversify"
 
 import { TransactionModel } from "../models/transactionModel"
@@ -10,7 +12,7 @@ export class TransactionRepository implements ITransactionRepository {
 
   async create(transactionEntity: ITransactionEntity): Promise<ITransactionEntity> {
     const createResponse = await this.transactionModel.create({
-      transactionId: transactionEntity.transactionId,
+      _id: transactionEntity._id,
       userId: transactionEntity.userId,
       name: transactionEntity.name,
       valueCents: transactionEntity.valueCents,
@@ -19,11 +21,11 @@ export class TransactionRepository implements ITransactionRepository {
       createdAt: transactionEntity.createdAt,
       updatedAt: transactionEntity.updatedAt
     })
-    
+
     console.log('create::response => ', createResponse)
 
     const createTransactionReturn = {
-      transactionId: transactionEntity.transactionId,
+      _id: String(createResponse._id),
       userId: transactionEntity.userId,
       name: transactionEntity.name,
       valueCents: transactionEntity.valueCents,
@@ -32,37 +34,26 @@ export class TransactionRepository implements ITransactionRepository {
       createdAt: createResponse.createdAt,
       updatedAt: createResponse.updatedAt
     }
-    
+
     return createTransactionReturn
+  }
+
+  async get(transactionId: string): Promise<ITransactionEntity> {
+    const getResponse = await this.transactionModel.findById({ _id: transactionId }).select("-__v")
+    console.log('get::response => ', getResponse)
+
+    return getResponse as ITransactionEntity
   }
 
   async delete(transactionId: String): Promise<boolean> {
     const deleteResponse = await this.transactionModel.deleteOne({
-      transactionId: transactionId
-    })
-    
+      _id: transactionId
+    }).select("-__v")
+
     console.log('delete::response => ', deleteResponse.deletedCount)
     if (deleteResponse.deletedCount == 1){
       return true
     }
     return false
-  }
-  
-  async get(id: string): Promise<ITransactionEntity> {
-    const getResponse = await this.transactionModel.findOne({ transactionId: id })
-    console.log('get::response => ', getResponse)
-
-    const getTransactionReturn = {
-      transactionId: id,
-      userId: String(getResponse?.userId),
-      name: String(getResponse?.name),
-      valueCents: Number(getResponse?.valueCents),
-      categoryId: getResponse?.categoryId || undefined,
-      date: getResponse?.date,
-      createdAt: getResponse?.createdAt,
-      updatedAt: getResponse?.updatedAt
-    }
-
-    return getTransactionReturn
   }
 }

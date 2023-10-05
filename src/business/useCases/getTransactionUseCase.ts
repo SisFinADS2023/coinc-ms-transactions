@@ -11,13 +11,15 @@ export class GetTransactionUseCase implements IUseCase<InputGetTransactionDto, O
   public constructor(@inject(ITransactionRepositoryToken) private transactionRepository: ITransactionRepository) {}
 
   async exec(input: InputGetTransactionDto): Promise<OutputGetTransactionDto> {
-    console.log('Chegou Aqui getTransactionUseCase')
     try {
-        const transactionResult = await this.transactionRepository.get(input.transactionId)
-        if(!transactionResult) {
-            return left(TransactionNotFound)
-        }
-        return right(transactionResult)
+      const transactionResult = await this.transactionRepository.get(input.transactionId)
+      console.log('transaction::result => ', transactionResult)
+
+      if(!transactionResult) {
+        return left(TransactionNotFound)
+      }
+      
+      return right(transactionResult)
     } catch (error) {
       return left(TransactionGetFailed)
     }

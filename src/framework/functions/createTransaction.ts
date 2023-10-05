@@ -7,7 +7,6 @@ import { container } from '../shared/ioc/container'
 import { httpResponse } from '../utility/httpResponse'
 import { CreateTransactionOperator } from '../../controller/operators/createTransactionOperator'
 import { InputCreateTransaction } from '../../controller/serializers/inputCreateTransaction'
-import { dbConnect } from '../utility/database'
 
 export const handler = httpHandler(async (event: APIGatewayProxyEvent, context: Context) => {
   context.callbackWaitsForEmptyEventLoop = false
@@ -19,8 +18,6 @@ export const handler = httpHandler(async (event: APIGatewayProxyEvent, context: 
     ...body,
     ...(date && { date: new Date(date) })
   }
-
-  await dbConnect()
 
   const input = new InputCreateTransaction(payload)
   const result = await operator.exec(input)

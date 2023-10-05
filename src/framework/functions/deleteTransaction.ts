@@ -7,16 +7,13 @@ import { container } from '../shared/ioc/container'
 import { httpResponse } from '../utility/httpResponse'
 import { DeleteTransactionOperator } from '../../controller/operators/deleteTransactionOperator'
 import { InputDeleteTransaction } from '../../controller/serializers/inputDeleteTransaction'
-import { dbConnect } from '../utility/database'
 
 export const handler = httpHandler(async (event: APIGatewayProxyEvent, context: Context) => {
   context.callbackWaitsForEmptyEventLoop = false
   const operator = container.get(DeleteTransactionOperator)
-  
+
   const body = event?.pathParameters
 
-  await dbConnect()
-  console.log('connect')
   const input = new InputDeleteTransaction(body as Object)
   const result = await operator.exec(input)
 

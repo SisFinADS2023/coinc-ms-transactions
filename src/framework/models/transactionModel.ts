@@ -1,24 +1,10 @@
-import { Double, UUID } from "mongodb"
-import { Schema, model } from "mongoose"
+import { Schema, model, ObjectId, Model } from "mongoose"
+import { ITransactionEntity } from "../../domain/entities/transactionEntity"
 
-interface ITransaction {
-  transactionId: UUID
-  userId: UUID
-  name: string
-  valueCents: Double
-  categoryId: UUID
-  date: Date
-}
-
-const transactionSchema = new Schema<ITransaction> (
+const transactionSchema = new Schema<ITransactionEntity> (
   {
-    transactionId: {
-      type: Schema.Types.UUID,
-      index: true,
-      required: true
-    },
     userId: {
-      type: Schema.Types.UUID,
+      type: String,
       required: true
     },
     name: {
@@ -30,18 +16,20 @@ const transactionSchema = new Schema<ITransaction> (
       required: true
     },
     categoryId: {
-      type: Schema.Types.UUID,
+      type: String,
       required: false
     },
     date: {
       type: Date,
       required: true,
       default: Date.now()
-    }
+    },
+    createdAt: {},
+    updatedAt: {}
   },
   {
     timestamps: true
   }
 )
 
-export const TransactionModel = model<ITransaction>('Transactions', transactionSchema)
+export const TransactionModel: Model<ITransactionEntity> = model<ITransactionEntity>('Transactions', transactionSchema)

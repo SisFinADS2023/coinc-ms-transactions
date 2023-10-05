@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsUUID } from 'class-validator'
+import { IsMongoId, IsNotEmpty } from 'class-validator'
 import { ITransactionEntity } from '../../domain/entities/transactionEntity'
 
 import { Either } from '../../framework/shared/either'
@@ -7,7 +7,7 @@ import { Validatable } from './abstractValidatable'
 
 export class InputGetTransaction extends Validatable<InputGetTransaction> {
   @IsNotEmpty()
-  @IsUUID()
+  @IsMongoId()
   transactionId!: string
 }
 

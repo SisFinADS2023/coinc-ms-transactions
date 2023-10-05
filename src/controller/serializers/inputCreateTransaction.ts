@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsString, isUUID, IsUUID } from 'class-validator'
+import { IsDate, IsMongoId, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator'
 
 import { ITransactionEntity } from '../../domain/entities/transactionEntity'
 import { Either } from '../../framework/shared/either'
@@ -7,7 +7,7 @@ import { Validatable } from './abstractValidatable'
 
 export class InputCreateTransaction extends Validatable<InputCreateTransaction> {
   @IsNotEmpty()
-  @IsUUID()
+  @IsMongoId()
   userId!: string
 
   @IsNotEmpty()
@@ -16,10 +16,10 @@ export class InputCreateTransaction extends Validatable<InputCreateTransaction> 
 
   @IsNotEmpty()
   @IsNumber()
-  valueCents!: bigint
+  valueCents!: Number
 
   @IsOptional()
-  @IsUUID()
+  @IsMongoId()
   categoryId!: string
 
   @IsOptional()
