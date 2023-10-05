@@ -48,3 +48,12 @@ functions:
           cors:
             origin: '*'
             headers: '*'
+  createCategory:
+    handler: ${self:custom.funcDir}/createCategory.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/category
+          method: post
+          cors:
+            origin: '*'
+            headers: '*'
