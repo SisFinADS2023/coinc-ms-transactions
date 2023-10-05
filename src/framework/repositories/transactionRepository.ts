@@ -21,7 +21,7 @@ export class TransactionRepository implements ITransactionRepository {
       createdAt: transactionEntity.createdAt,
       updatedAt: transactionEntity.updatedAt
     })
-    
+
     console.log('create::response => ', createResponse)
 
     const createTransactionReturn = {
@@ -34,15 +34,26 @@ export class TransactionRepository implements ITransactionRepository {
       createdAt: createResponse.createdAt,
       updatedAt: createResponse.updatedAt
     }
-    
+
     return createTransactionReturn
   }
 
   async get(transactionId: string): Promise<ITransactionEntity> {
     const getResponse = await this.transactionModel.findById({ _id: transactionId }).select("-__v")
-
     console.log('get::response => ', getResponse)
 
     return getResponse as ITransactionEntity
+  }
+
+  async delete(transactionId: String): Promise<boolean> {
+    const deleteResponse = await this.transactionModel.deleteOne({
+      _id: transactionId
+    }).select("-__v")
+
+    console.log('delete::response => ', deleteResponse.deletedCount)
+    if (deleteResponse.deletedCount == 1){
+      return true
+    }
+    return false
   }
 }

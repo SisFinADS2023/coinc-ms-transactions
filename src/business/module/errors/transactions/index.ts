@@ -10,8 +10,14 @@ export const TransactionGetFailed = {
   shortMessage: 'transactionGetFailed'
 }
 
+export const TransactionDeleteFailed = {
+  code: 'TDF-003',
+  message: 'Transaction delete failed',
+  shortMessage: 'transactionDeleteFailed'
+}
+
 export const TransactionNotFound = {
-  code: 'TNF-003',
+  code: 'TNF-004',
   message: 'Transaction Not Found',
   shortMessage: 'transactionNotFound'
 }

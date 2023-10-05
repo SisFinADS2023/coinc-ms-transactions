@@ -39,3 +39,12 @@ functions:
           cors:
             origin: '*'
             headers: '*'
+  deleteTransaction:
+    handler: ${self:custom.funcDir}/deleteTransaction.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/{transactionId}
+          method: delete
+          cors:
+            origin: '*'
+            headers: '*'
