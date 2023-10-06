@@ -22,7 +22,7 @@ custom:
 
 functions:
   createTransaction:
-    handler: ${self:custom.funcDir}/createTransaction.handler
+    handler: ${self:custom.funcDir}/transactions/createTransaction.handler
     events:
       - http:
           path: ${self:custom.baseApi}/
@@ -31,7 +31,7 @@ functions:
             origin: '*'
             headers: '*'
   getTransaction:
-    handler: ${self:custom.funcDir}/getTransaction.handler
+    handler: ${self:custom.funcDir}/transactions/getTransaction.handler
     events:
       - http:
           path: ${self:custom.baseApi}/{transactionId}
@@ -40,11 +40,20 @@ functions:
             origin: '*'
             headers: '*'
   deleteTransaction:
-    handler: ${self:custom.funcDir}/deleteTransaction.handler
+    handler: ${self:custom.funcDir}/transactions/deleteTransaction.handler
     events:
       - http:
           path: ${self:custom.baseApi}/{transactionId}
           method: delete
+          cors:
+            origin: '*'
+            headers: '*'
+  createCategory:
+    handler: ${self:custom.funcDir}/categories/createCategory.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/category
+          method: post
           cors:
             origin: '*'
             headers: '*'

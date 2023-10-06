@@ -12,7 +12,7 @@ export class TransactionRepository implements ITransactionRepository {
 
   async create(transactionEntity: ITransactionEntity): Promise<ITransactionEntity> {
     const createResponse = await this.transactionModel.create({
-      _id: transactionEntity._id,
+      _id: transactionEntity.transactionId,
       userId: transactionEntity.userId,
       name: transactionEntity.name,
       valueCents: transactionEntity.valueCents,

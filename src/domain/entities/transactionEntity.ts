@@ -1,7 +1,7 @@
 import { AbstractEntity } from './abstractEntity'
 
 export interface ITransactionEntity {
-  _id?: string
+  transactionId?: string
   userId: string
   name: string
   valueCents: Number

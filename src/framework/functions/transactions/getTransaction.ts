@@ -1,13 +1,13 @@
 import 'reflect-metadata'
-import '../ioc/inversify.config'
+import '../../ioc/inversify.config'
 import { APIGatewayProxyEvent, Context } from 'aws-lambda'
 
-import { httpHandler } from '../utility/httpHandler'
-import { container } from '../shared/ioc/container'
-import { httpResponse } from '../utility/httpResponse'
-import { GetTransactionOperator } from '../../controller/operators/getTransactionOperator'
-import { InputGetTransaction } from '../../controller/serializers/inputGetTransaction'
-import { TransactionNotFound } from '../../business/module/errors/transactions'
+import { httpHandler } from '../../utility/httpHandler'
+import { container } from '../../shared/ioc/container'
+import { httpResponse } from '../../utility/httpResponse'
+import { GetTransactionOperator } from '../../../controller/operators/getTransactionOperator'
+import { InputGetTransaction } from '../../../controller/serializers/inputGetTransaction'
+import { TransactionNotFound } from '../../../business/module/errors/transactions'
 
 export const handler = httpHandler(async (event: APIGatewayProxyEvent, context: Context) => {
   context.callbackWaitsForEmptyEventLoop = false
