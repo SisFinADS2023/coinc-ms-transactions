@@ -9,4 +9,9 @@ export interface InputCreateCategoryDto {
   color: string
 }
 
+export interface InputDeleteCategoryDto {
+  categoryId: string
+}
+
 export type OutputCreateCategoryDto = Either<IError, ICategoryEntity>
+export type OutputDeleteCategoryDto = Either<IError, boolean>

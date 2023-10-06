@@ -57,3 +57,12 @@ functions:
           cors:
             origin: '*'
             headers: '*'
+  deleteCategory:
+    handler: ${self:custom.funcDir}/categories/deleteCategory.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/category/{categoryId}
+          method: delete
+          cors:
+            origin: '*'
+            headers: '*'
