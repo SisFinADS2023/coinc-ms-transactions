@@ -8,15 +8,15 @@ import { ICategoryRepository, ICategoryRepositoryToken } from '../repositories/i
 
 @injectable()
 export class DeleteCategoryUseCase implements IUseCase<InputDeleteCategoryDto, OutputDeleteCategoryDto> {
-  public constructor(@inject(ICategoryRepositoryToken) private transactionRepository: ICategoryRepository) {}
+  public constructor(@inject(ICategoryRepositoryToken) private categoryRepository: ICategoryRepository) {}
 
   async exec(input: InputDeleteCategoryDto): Promise<OutputDeleteCategoryDto> {
     try {
-        const transactionResult = await this.transactionRepository.delete(input.categoryId)
-        if(!transactionResult) {
+        const categoryResult = await this.categoryRepository.delete(input.categoryId)
+        if(!categoryResult) {
             return left(CategoryNotFound)
         }
-        return right(transactionResult)
+        return right(categoryResult)
     } catch (error) {
       return left(CategoryDeleteFailed)
     }

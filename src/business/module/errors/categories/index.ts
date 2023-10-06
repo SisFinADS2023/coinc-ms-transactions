@@ -5,7 +5,7 @@ export const CategoryCreationFailed = {
   }
 
 export const CategoryDeleteFailed = {
-  code: 'CCF-002',
+  code: 'CDF-002',
   message: 'Category delete failed',
   shortMessage: 'categoryDeleteFailed'
 }
