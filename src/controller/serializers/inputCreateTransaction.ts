@@ -8,6 +8,10 @@ import { Validatable } from './abstractValidatable'
 export class InputCreateTransaction extends Validatable<InputCreateTransaction> {
   @IsNotEmpty()
   @IsMongoId()
+  accountId!: string
+
+  @IsNotEmpty()
+  @IsMongoId()
   userId!: string
 
   @IsNotEmpty()
