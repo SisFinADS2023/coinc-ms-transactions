@@ -5,7 +5,7 @@ export interface ITransactionEntity {
   userId: string
   name: string
   valueCents: Number
-  categoryId?: string
+  categories?: [string]
   date?: Date
   createdAt?: Date
   updatedAt?: Date

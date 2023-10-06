@@ -15,8 +15,8 @@ const transactionSchema = new Schema<ITransactionEntity> (
       type: Number,
       required: true
     },
-    categoryId: {
-      type: String,
+    categories: {
+      type: [String],
       required: false
     },
     date: {

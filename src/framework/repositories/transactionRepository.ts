@@ -16,7 +16,7 @@ export class TransactionRepository implements ITransactionRepository {
       userId: transactionEntity.userId,
       name: transactionEntity.name,
       valueCents: transactionEntity.valueCents,
-      categoryId: transactionEntity.categoryId,
+      categories: transactionEntity.categories,
       date: transactionEntity.date,
       createdAt: transactionEntity.createdAt,
       updatedAt: transactionEntity.updatedAt
@@ -29,7 +29,7 @@ export class TransactionRepository implements ITransactionRepository {
       userId: transactionEntity.userId,
       name: transactionEntity.name,
       valueCents: transactionEntity.valueCents,
-      categoryId: transactionEntity.categoryId,
+      categories: transactionEntity.categories,
       date: createResponse.date,
       createdAt: createResponse.createdAt,
       updatedAt: createResponse.updatedAt
