@@ -43,4 +43,16 @@ export class CategoryRepository implements ICategoryRepository {
 
     return createCategoryReturn
   }
+
+  async delete(categoryId: String): Promise<boolean> {
+    const deleteResponse = await this.categoryModel.deleteOne({
+      _id: categoryId
+    })
+
+    console.log('delete::response => ', deleteResponse.deletedCount)
+    if (deleteResponse.deletedCount == 1){
+      return true
+    }
+    return false
+  }
 }
