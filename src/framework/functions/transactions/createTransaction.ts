@@ -7,6 +7,7 @@ import { container } from '../../shared/ioc/container'
 import { httpResponse } from '../../utility/httpResponse'
 import { CreateTransactionOperator } from '../../../controller/operators/createTransactionOperator'
 import { InputCreateTransaction } from '../../../controller/serializers/inputCreateTransaction'
+import { CategoryNotFound } from '../../../business/module/errors/categories'
 
 export const handler = httpHandler(async (event: APIGatewayProxyEvent, context: Context) => {
   context.callbackWaitsForEmptyEventLoop = false
@@ -23,6 +24,10 @@ export const handler = httpHandler(async (event: APIGatewayProxyEvent, context: 
   const result = await operator.exec(input)
 
   if (result.isLeft()) {
+    if (result.value.code == CategoryNotFound.code) {
+      return httpResponse.notFound(result.value)
+    }
+
     return httpResponse.badRequest(result.value)
   }
 

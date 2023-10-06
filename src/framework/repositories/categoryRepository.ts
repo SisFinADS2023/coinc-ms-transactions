@@ -10,6 +10,14 @@ import { ICategoryEntity } from '../../domain/entities/categoryEntity'
 export class CategoryRepository implements ICategoryRepository {
   public constructor(@inject(CategoryModel) private categoryModel: typeof CategoryModel) {}
 
+  async validate(categories: [String]): Promise<boolean> {
+    const categoriesExist = await this.categoryModel.countDocuments({_id: categories})
+    console.log("categories::exist => ", categoriesExist)
+
+    if (categoriesExist == categories.length) return true
+    return false
+  }
+
   async create(categoryEntity: ICategoryEntity): Promise<ICategoryEntity> {
     const createResponse = await this.categoryModel.create({
       _id: categoryEntity.categoryId,
