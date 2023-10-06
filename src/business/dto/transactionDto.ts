@@ -6,7 +6,7 @@ export interface InputCreateTransactionDto {
   userId: string
   name: string
   valueCents: Number
-  categoryId?: string
+  categories?: [string]
   date?: Date
 }
 

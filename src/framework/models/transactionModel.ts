@@ -1,4 +1,4 @@
-import { Schema, model, ObjectId, Model } from "mongoose"
+import { Schema, model, Model } from "mongoose"
 import { ITransactionEntity } from "../../domain/entities/transactionEntity"
 
 const transactionSchema = new Schema<ITransactionEntity> (
@@ -15,8 +15,9 @@ const transactionSchema = new Schema<ITransactionEntity> (
       type: Number,
       required: true
     },
-    categoryId: {
-      type: String,
+    categories: {
+      type: [String],
+      ref: 'categories',
       required: false
     },
     date: {

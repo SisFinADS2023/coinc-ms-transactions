@@ -19,12 +19,12 @@ export class InputCreateTransaction extends Validatable<InputCreateTransaction> 
   valueCents!: Number
 
   @IsOptional()
-  @IsMongoId()
-  categoryId!: string
+  @IsMongoId({ each : true })
+  categories?: [string]
 
   @IsOptional()
   @IsDate()
-  date!: Date
+  date?: Date
 }
 
 export type OutputCreateTransaction = Either<IError, ITransactionEntity>
