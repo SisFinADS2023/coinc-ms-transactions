@@ -4,7 +4,13 @@ useDotenv: true
 
 provider:
   name: aws
-  runtime: nodejs18.x
+  runtime: nodejs16.x
+  region: 'us-east-1'
+  stage: ${opt:stage, "${env:stage, 'dev'}"}
+  memorySize: 512
+  apiGateway:
+    restApiId: ${ssm:/coinc/infra/api-gateway/id}
+    restApiRootResourceId: ${ssm:/coinc/infra/api-gateway/root-resource-id}
 
 plugins:
   - serverless-esbuild
