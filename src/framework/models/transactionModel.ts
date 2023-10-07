@@ -3,6 +3,10 @@ import { ITransactionEntity } from "../../domain/entities/transactionEntity"
 
 const transactionSchema = new Schema<ITransactionEntity> (
   {
+    bankAccountId: {
+      type: String,
+      required: false
+    },
     userId: {
       type: String,
       required: true
