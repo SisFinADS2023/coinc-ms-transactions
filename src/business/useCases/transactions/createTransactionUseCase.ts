@@ -1,12 +1,12 @@
 import { injectable, inject } from 'inversify'
 
-import { left, right } from '../../framework/shared/either'
-import { IUseCase } from './iUseCase'
-import { InputCreateTransactionDto, OutputCreateTransactionDto } from '../dto/transactionDto'
-import { TransactionCreationFailed } from '../module/errors/transactions'
-import { ITransactionRepository, ITransactionRepositoryToken } from '../repositories/iTransactionRepository'
-import { ICategoryRepository, ICategoryRepositoryToken } from '../repositories/iCategoryRepository'
-import { CategoryNotFound } from '../module/errors/categories'
+import { left, right } from '../../../framework/shared/either'
+import { IUseCase } from '../iUseCase'
+import { InputCreateTransactionDto, OutputCreateTransactionDto } from '../../dto/transactionDto'
+import { TransactionCreationFailed } from '../../module/errors/transactions'
+import { ITransactionRepository, ITransactionRepositoryToken } from '../../repositories/iTransactionRepository'
+import { ICategoryRepository, ICategoryRepositoryToken } from '../../repositories/iCategoryRepository'
+import { CategoryNotFound } from '../../module/errors/categories'
 
 @injectable()
 export class CreateTransactionUseCase implements IUseCase<InputCreateTransactionDto, OutputCreateTransactionDto> {

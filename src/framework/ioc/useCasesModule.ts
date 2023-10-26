@@ -1,9 +1,9 @@
 import { ContainerModule, interfaces } from 'inversify'
-import { CreateCategoryUseCase } from '../../business/useCases/createCategoryUseCase'
-import { CreateTransactionUseCase } from '../../business/useCases/createTransactionUseCase'
-import { DeleteCategoryUseCase } from '../../business/useCases/deleteCategoryUseCase'
-import { DeleteTransactionUseCase } from '../../business/useCases/deleteTransactionUseCase'
-import { GetTransactionUseCase } from '../../business/useCases/getTransactionUseCase'
+import { CreateCategoryUseCase } from '../../business/useCases/categories/createCategoryUseCase'
+import { CreateTransactionUseCase } from '../../business/useCases/transactions/createTransactionUseCase'
+import { DeleteCategoryUseCase } from '../../business/useCases/categories/deleteCategoryUseCase'
+import { DeleteTransactionUseCase } from '../../business/useCases/transactions/deleteTransactionUseCase'
+import { GetTransactionUseCase } from '../../business/useCases/transactions/getTransactionUseCase'
 
 export const UseCasesModule = new ContainerModule((bind: interfaces.Bind) => {
   bind(CreateTransactionUseCase).toSelf()

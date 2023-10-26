@@ -1,9 +1,9 @@
 import { injectable, inject } from 'inversify'
 
-import { left, right } from '../../framework/shared/either'
-import { AbstractOperator } from './abstractOperator'
-import { DeleteCategoryUseCase } from '../../business/useCases/deleteCategoryUseCase'
-import { InputDeleteCategory, OutputDeleteCategory } from '../serializers/inputDeleteCategory'
+import { left, right } from '../../../framework/shared/either'
+import { InputDeleteCategory, OutputDeleteCategory } from '../../serializers/categories/inputDeleteCategory'
+import { AbstractOperator } from '../abstractOperator'
+import { DeleteCategoryUseCase } from '../../../business/useCases/categories/deleteCategoryUseCase'
 
 @injectable()
 export class DeleteCategoryOperator extends AbstractOperator<InputDeleteCategory, OutputDeleteCategory> {
