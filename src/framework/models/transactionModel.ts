@@ -19,11 +19,11 @@ const transactionSchema = new Schema<ITransactionEntity> (
       type: Number,
       required: true
     },
-    categories: {
-      type: [String],
-      ref: 'categories',
+    categories: [{
+      type: String,
+      ref: 'Categories',
       required: false
-    },
+    }],
     date: {
       type: Date,
       required: true,

@@ -14,6 +14,7 @@ export interface InputCreateTransactionDto {
 export interface InputGetTransactionDto {
   transactionId: string
 }
+
 export interface InputDeleteTransactionDto {
   transactionId: string
 }
