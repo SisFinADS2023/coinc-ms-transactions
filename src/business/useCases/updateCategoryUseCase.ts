@@ -13,7 +13,11 @@ export class UpdateCategoryUseCase implements IUseCase<InputUpdateCategoryDto, O
     async exec(input: InputUpdateCategoryDto): Promise<OutputUpdateCategoryDto> {
         try {
             const category = await this.categoryRepository.update(input)
-            console.log('category => ', category)
+            if(!category){
+                return left(CategoryNotFound)
+            } else {
+                console.log('category => ', category)
+            }
       
             return right(category)
         } catch (error) {
