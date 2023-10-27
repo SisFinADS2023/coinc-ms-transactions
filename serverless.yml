@@ -10,7 +10,12 @@ provider:
   memorySize: 512
   apiGateway:
     restApiId: ${ssm:/coinc/infra/api-gateway/id}
-    restApiRootResourceId: ${ssm:/coinc/infra/api-gateway/root-resource-id}
+    restApiRootResourceId: ${ssm:/coinc/infra/api-gateway/root-resource-id}]
+
+  environment:
+    DB_HOST: ${ssm:/coinc/infra/db_host}
+    DB_USER: ${ssm:/coinc/infra/db_user}
+    DB_PASSWORD: ${ssm:/coinc/infra/db_password}
 
 plugins:
   - serverless-esbuild
