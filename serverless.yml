@@ -72,3 +72,12 @@ functions:
           cors:
             origin: '*'
             headers: '*'
+  updateCategory:
+    handler: ${self:custom.funcDir}/categories/updateCategory.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/category/
+          method: put
+          cors:
+            origin: '*'
+            headers: '*'

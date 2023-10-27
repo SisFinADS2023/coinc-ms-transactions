@@ -3,7 +3,7 @@ import   '../utility/database'
 import { inject, injectable } from "inversify"
 import { CategoryModel } from '../models/categoryModel'
 import { ICategoryRepository } from '../../business/repositories/iCategoryRepository'
-import { ICategoryEntity } from '../../domain/entities/categoryEntity'
+import { ICategoryEntity, IUpdateCategoryEntity } from '../../domain/entities/categoryEntity'
 
 
 @injectable()
@@ -54,5 +54,18 @@ export class CategoryRepository implements ICategoryRepository {
       return true
     }
     return false
+  }
+
+  async update(categoryEntity: IUpdateCategoryEntity): Promise<ICategoryEntity> {
+    const updateResponse = await this.categoryModel.findOneAndUpdate({_id: categoryEntity.categoryId}, {
+      categoryId: categoryEntity.categoryId,
+      name: categoryEntity.name,
+      icon: categoryEntity.icon,
+      color: categoryEntity.color
+    }, {new: true}).select('-__v')
+
+    console.log('update::response => ', updateResponse)
+
+    return updateResponse as ICategoryEntity
   }
 }

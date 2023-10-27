@@ -1,4 +1,4 @@
-import { IsDate, IsMongoId, IsNotEmpty, IsNumber, IsOptional, IsString, isUUID, IsUUID } from 'class-validator'
+import { IsMongoId, IsNotEmpty } from 'class-validator'
 
 import { Either } from '../../framework/shared/either'
 import { IError } from '../../framework/shared/iError'

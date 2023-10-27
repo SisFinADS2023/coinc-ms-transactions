@@ -10,4 +10,12 @@ export interface ICategoryEntity {
   updatedAt?: Date
 }
 
+export interface IUpdateCategoryEntity {
+  categoryId: string
+  name?: string
+  icon?: string
+  color?: string
+}
+
 export class CategoryEntity extends AbstractEntity<ICategoryEntity> {}
+export class UpdateCategoryEntity extends AbstractEntity<IUpdateCategoryEntity> {}
