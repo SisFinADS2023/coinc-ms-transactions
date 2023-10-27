@@ -1,3 +1,5 @@
+import { IError } from "../../../../framework/shared/iError"
+
 export const TransactionCreationFailed = {
   code: 'TCF-001',
   message: 'Transaction creation failed',
@@ -20,4 +22,10 @@ export const TransactionNotFound = {
   code: 'TNF-004',
   message: 'Transaction Not Found',
   shortMessage: 'transactionNotFound'
+}
+
+export const TransactionsListFailed: IError = {
+  code: 'TLF-005',
+  message: 'Transactions list failed',
+  shortMessage: 'transactionsListFailed'
 }

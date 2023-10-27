@@ -6,6 +6,10 @@ import { IError } from '../../framework/shared/iError'
 import { Validatable } from './abstractValidatable'
 
 export class InputCreateTransaction extends Validatable<InputCreateTransaction> {
+  @IsOptional()
+  @IsMongoId()
+  bankAccountId?: string
+
   @IsNotEmpty()
   @IsMongoId()
   userId!: string

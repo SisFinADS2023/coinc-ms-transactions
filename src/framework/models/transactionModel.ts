@@ -3,6 +3,10 @@ import { ITransactionEntity } from "../../domain/entities/transactionEntity"
 
 const transactionSchema = new Schema<ITransactionEntity> (
   {
+    bankAccountId: {
+      type: String,
+      required: false
+    },
     userId: {
       type: String,
       required: true
@@ -15,11 +19,11 @@ const transactionSchema = new Schema<ITransactionEntity> (
       type: Number,
       required: true
     },
-    categories: {
-      type: [String],
-      ref: 'categories',
+    categories: [{
+      type: String,
+      ref: 'Categories',
       required: false
-    },
+    }],
     date: {
       type: Date,
       required: true,

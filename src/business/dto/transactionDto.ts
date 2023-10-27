@@ -3,6 +3,7 @@ import { Either } from "../../framework/shared/either"
 import { IError } from "../../framework/shared/iError"
 
 export interface InputCreateTransactionDto {
+  bankAccountId: string
   userId: string
   name: string
   valueCents: Number
@@ -13,6 +14,7 @@ export interface InputCreateTransactionDto {
 export interface InputGetTransactionDto {
   transactionId: string
 }
+
 export interface InputDeleteTransactionDto {
   transactionId: string
 }

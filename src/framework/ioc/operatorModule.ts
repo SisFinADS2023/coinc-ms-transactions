@@ -5,11 +5,13 @@ import { DeleteCategoryOperator } from '../../controller/operators/deleteCategor
 import { DeleteTransactionOperator } from '../../controller/operators/deleteTransactionOperator'
 import { GetTransactionOperator } from '../../controller/operators/getTransactionOperator'
 import { UpdateCategoryOperator } from '../../controller/operators/updateCategoryOperator'
+import { ListTransactionsOperator } from '../../controller/operators/transactions/listTransactionsOperator'
 
 export const OperatorModule = new ContainerModule((bind: interfaces.Bind) => {
   bind(CreateTransactionOperator).toSelf()
   bind(DeleteTransactionOperator).toSelf()
   bind(GetTransactionOperator).toSelf()
+  bind(ListTransactionsOperator).toSelf()
 
   bind(CreateCategoryOperator).toSelf()
   bind(DeleteCategoryOperator).toSelf()
