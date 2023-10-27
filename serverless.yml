@@ -4,7 +4,7 @@ useDotenv: true
 
 provider:
   name: aws
-  runtime: nodejs16.x
+  runtime: nodejs14.x
   region: 'us-east-1'
   stage: ${opt:stage, "${env:stage, 'dev'}"}
   memorySize: 512
@@ -41,6 +41,15 @@ functions:
     events:
       - http:
           path: ${self:custom.baseApi}/{transactionId}
+          method: get
+          cors:
+            origin: '*'
+            headers: '*'
+  listTransactions:
+    handler: ${self:custom.funcDir}/transactions/listTransactions.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}
           method: get
           cors:
             origin: '*'
