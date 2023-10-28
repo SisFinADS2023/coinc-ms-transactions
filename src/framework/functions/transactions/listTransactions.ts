@@ -10,19 +10,25 @@ import { ListTransactionsOperator } from '../../../controller/operators/transact
 
 export const handler = httpHandler(async (event: APIGatewayProxyEvent, context: Context) => {
   context.callbackWaitsForEmptyEventLoop = false
+  try {
 
-  const operator = container.get(ListTransactionsOperator)
-  const body = event?.queryStringParameters
-  const input = new InputListTransactions({
-    ...(body as object),
-    page: body?.page ? Number(body.page) : undefined,
-    perPage: body?.perPage ? Number(body.perPage) : undefined,
-  })
-  const result = await operator.exec(input)
+    const operator = container.get(ListTransactionsOperator)
+    const body = event?.queryStringParameters
+    console.log({ body })
 
-  if (result.isLeft()) {
-    return httpResponse.badRequest(result.value)
+    const input = new InputListTransactions({
+      ...(body as object),
+      page: body?.page ? Number(body.page) : undefined,
+      perPage: body?.perPage ? Number(body.perPage) : undefined,
+    })
+    const result = await operator.exec(input)
+
+    if (result.isLeft()) {
+      return httpResponse.badRequest(result.value)
+    }
+
+    return httpResponse.ok(result.value)
+  } catch (error) {
+    console.log('DEU RUIM => ', error)
   }
-
-  return httpResponse.ok(result.value)
 })

@@ -12,10 +12,13 @@ export class ListTransactionsUseCase implements IUseCase<InputListTransactionsDt
 
   async exec(input: InputListTransactionsDto): Promise<OutputListTransactionsDto> {
     try {
+      console.log({ input })
       const transactionResult = await this.transactionRepository.list(input)
 
       return right(transactionResult)
     } catch (error) {
+      console.log('ListTransactionsUseCase::Error => ', error)
+
       return left(TransactionsListFailed)
     }
   }
