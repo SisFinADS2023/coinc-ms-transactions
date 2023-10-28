@@ -7,7 +7,7 @@ const db = {
   userName: process.env.DB_USER,
   password: process.env.DB_PASSWORD
 }
-console.log({ db })
+
 const URI = `mongodb+srv://${db.userName}:${db.password}@${db.host}/?retryWrites=true&w=majority`
 
 try {

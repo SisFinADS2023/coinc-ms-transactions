@@ -1,5 +1,3 @@
-import '../utility/database'
-
 import { inject, injectable } from "inversify"
 
 import { TransactionModel } from "../models/transactionModel"
