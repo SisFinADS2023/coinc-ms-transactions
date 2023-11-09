@@ -68,13 +68,27 @@ export class TransactionRepository implements ITransactionRepository {
   }
 
   async list(props: InputListTransactionsDto): Promise<ITransactionEntity[]> {
+    let query = null
+
+    if (props.startDate && props.endDate) {
+      query = {
+        date: {
+          $gte: new Date(props.startDate),
+          $lte: new Date(props.endDate)
+        }
+      }
+    }
+
+    if (props.type) {
+      query = {
+        ...query,
+        valueCents: props.type === 'credit' ? { $gte: 0 } : { $lt: 0 }
+      }
+    }
+
     const getResponse = await this.transactionModel.find({
       userId: props.userId,
-      ...(
-        props.type && {
-          valueCents: props.type === 'credit' ? { $gte: 0 } : { $lt: 0 }
-        }
-      ),
+      ...query
     }, null, {
       skip: props.perPage * (props.page - 1),
       limit: props.perPage,
@@ -87,7 +101,6 @@ export class TransactionRepository implements ITransactionRepository {
         select: 'id name icon color'
       })
       .select("-__v")
-    console.log('List::response => ', getResponse)
 
     return getResponse as ITransactionEntity[]
   }

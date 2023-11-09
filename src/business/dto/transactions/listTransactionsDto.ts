@@ -19,6 +19,8 @@ export interface InputListTransactionsDto {
   type?: TransactionTypes
   categoryId?: string
   orderBy?: OrderByTypes
+  startDate?: string
+  endDate?: string
 }
 
 export type OutputListTransactionsDto = Either<IError, ITransactionEntity[]>

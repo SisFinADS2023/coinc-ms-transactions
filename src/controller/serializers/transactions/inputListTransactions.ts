@@ -1,4 +1,4 @@
-import { IsIn, IsMongoId, IsNotEmpty, IsNumber, IsOptional } from 'class-validator'
+import { IsDateString, IsIn, IsMongoId, IsNotEmpty, IsNumber, IsOptional } from 'class-validator'
 
 import { Validatable } from '../abstractValidatable'
 import { Either } from '../../../framework/shared/either'
@@ -30,6 +30,14 @@ export class InputListTransactions extends Validatable<InputListTransactions> {
   @IsOptional()
   @IsIn(Object.values(OrderByTypes))
   orderBy!: OrderByTypes
+
+  @IsOptional()
+  @IsDateString()
+  startDate?: string
+
+  @IsOptional()
+  @IsDateString()
+  endDate?: string
 }
 
 export type OutputListTransactions = Either<IError, ITransactionEntity[]>
