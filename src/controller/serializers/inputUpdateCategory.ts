@@ -12,15 +12,15 @@ export class InputUpdateCategory extends Validatable<InputUpdateCategory> {
 
     @IsOptional()
     @IsString()
-    name!: string
+    name?: string
 
     @IsOptional()
     @IsString()
-    icon!: string
+    icon?: string
 
     @IsOptional()
     @IsHexColor()
-    color!: string
+    color?: string
 }
 
 export type OutputUpdateCategory = Either<IError, ICategoryEntity>
