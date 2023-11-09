@@ -54,4 +54,17 @@ export class CategoryRepository implements ICategoryRepository {
     }
     return false
   }
+
+  async update(categoryEntity: Partial<ICategoryEntity>): Promise<ICategoryEntity> {
+    const updateResponse = await this.categoryModel.findOneAndUpdate({_id: categoryEntity.categoryId}, {
+      categoryId: categoryEntity.categoryId,
+      name: categoryEntity.name,
+      icon: categoryEntity.icon,
+      color: categoryEntity.color
+    }, {new: true}).select('-__v')
+
+    console.log('update::response => ', updateResponse)
+
+    return updateResponse as ICategoryEntity
+  }
 }

@@ -15,3 +15,9 @@ export const CategoryNotFound = {
   message: 'Category Not Found',
   shortMessage: 'categoryNotFound'
 }
+
+export const CategoryUpdateFailed = {
+  code: 'CUF-004',
+  message: 'Category update failed',
+  shortMessage: 'categoryUpdateFailed'
+}

@@ -4,13 +4,18 @@ useDotenv: true
 
 provider:
   name: aws
-  runtime: nodejs16.x
+  runtime: nodejs14.x
   region: 'us-east-1'
   stage: ${opt:stage, "${env:stage, 'dev'}"}
   memorySize: 512
   apiGateway:
     restApiId: ${ssm:/coinc/infra/api-gateway/id}
     restApiRootResourceId: ${ssm:/coinc/infra/api-gateway/root-resource-id}
+
+  environment:
+    DB_HOST: ${ssm:/coinc/infra/db_host}
+    DB_USER: ${ssm:/coinc/infra/db_user}
+    DB_PASSWORD: ${ssm:/coinc/infra/db_password}
 
 plugins:
   - serverless-esbuild
@@ -45,6 +50,15 @@ functions:
           cors:
             origin: '*'
             headers: '*'
+  listTransactions:
+    handler: ${self:custom.funcDir}/transactions/listTransactions.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}
+          method: get
+          cors:
+            origin: '*'
+            headers: '*'
   deleteTransaction:
     handler: ${self:custom.funcDir}/transactions/deleteTransaction.handler
     events:
@@ -72,12 +86,18 @@ functions:
           cors:
             origin: '*'
             headers: '*'
+  updateCategory:
+    handler: ${self:custom.funcDir}/categories/updateCategory.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/category/
+          method: put
+          cors:
+            origin: '*'
+            headers: '*'
   createSchedule:
     handler: ${self:custom.funcDir}/schedules/createSchedule.handler
     events:
       - http:
           path: ${self:custom.baseApi}/schedules
           method: post
-          cors:
-            origin: '*'
-            headers: '*'

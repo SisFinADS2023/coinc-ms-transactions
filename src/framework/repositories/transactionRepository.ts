@@ -1,14 +1,13 @@
-import   '../utility/database'
-
 import { inject, injectable } from "inversify"
 
 import { TransactionModel } from "../models/transactionModel"
 import { ITransactionEntity } from "../../domain/entities/transactionEntity"
 import { ITransactionRepository } from "../../business/repositories/iTransactionRepository"
+import { InputListTransactionsDto } from '../../business/dto/transactions/listTransactionsDto'
 
 @injectable()
 export class TransactionRepository implements ITransactionRepository {
-  public constructor(@inject(TransactionModel) private transactionModel: typeof TransactionModel) {}
+  public constructor(@inject(TransactionModel) private transactionModel: typeof TransactionModel) { }
 
   async create(transactionEntity: ITransactionEntity): Promise<ITransactionEntity> {
     let createResponse = await this.transactionModel.create({
@@ -50,7 +49,7 @@ export class TransactionRepository implements ITransactionRepository {
       path: 'categories',
       select: 'id name icon color'
     }).select('-__v')
-    
+
     console.log('get::response => ', getResponse)
 
     return getResponse as ITransactionEntity
@@ -62,10 +61,34 @@ export class TransactionRepository implements ITransactionRepository {
     }).select('-__v')
 
     console.log('delete::response => ', deleteResponse.deletedCount)
-
-    if (deleteResponse.deletedCount == 1){
+    if (deleteResponse.deletedCount == 1) {
       return true
     }
     return false
+  }
+
+  async list(props: InputListTransactionsDto): Promise<ITransactionEntity[]> {
+    const getResponse = await this.transactionModel.find({
+      userId: props.userId,
+      ...(
+        props.type && {
+          valueCents: props.type === 'credit' ? { $gte: 0 } : { $lt: 0 }
+        }
+      ),
+    }, null, {
+      skip: props.perPage * (props.page - 1),
+      limit: props.perPage,
+      sort: {
+        createdAt: props.orderBy ?? 'desc'
+      }
+    })
+      .populate({
+        path: 'categories',
+        select: 'id name icon color'
+      })
+      .select("-__v")
+    console.log('List::response => ', getResponse)
+
+    return getResponse as ITransactionEntity[]
   }
 }

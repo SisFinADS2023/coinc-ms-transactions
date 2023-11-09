@@ -1,3 +1,4 @@
+import '../utility/database'
 import { Schema, model, Model } from "mongoose"
 import { ITransactionEntity } from "../../domain/entities/transactionEntity"
 
