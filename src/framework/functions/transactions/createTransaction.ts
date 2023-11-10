@@ -5,8 +5,8 @@ import { APIGatewayProxyEvent, Context } from 'aws-lambda'
 import { httpHandler } from '../../utility/httpHandler'
 import { container } from '../../shared/ioc/container'
 import { httpResponse } from '../../utility/httpResponse'
-import { CreateTransactionOperator } from '../../../controller/operators/createTransactionOperator'
-import { InputCreateTransaction } from '../../../controller/serializers/inputCreateTransaction'
+import { CreateTransactionOperator } from '../../../controller/operators/transactions/createTransactionOperator'
+import { InputCreateTransaction } from '../../../controller/serializers/transactions/inputCreateTransaction'
 import { CategoryNotFound } from '../../../business/module/errors/categories'
 
 export const handler = httpHandler(async (event: APIGatewayProxyEvent, context: Context) => {

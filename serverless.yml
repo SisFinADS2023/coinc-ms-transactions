@@ -95,3 +95,9 @@ functions:
           cors:
             origin: '*'
             headers: '*'
+  createSchedule:
+    handler: ${self:custom.funcDir}/schedules/createSchedule.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/schedules
+          method: post
