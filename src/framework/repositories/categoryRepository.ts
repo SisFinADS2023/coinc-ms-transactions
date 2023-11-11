@@ -6,7 +6,6 @@ import { ICategoryRepository } from '../../business/repositories/iCategoryReposi
 import { ICategoryEntity } from '../../domain/entities/categoryEntity'
 import { InputListCategoriesDto } from '../../business/dto/listCategoriesDto'
 
-
 @injectable()
 export class CategoryRepository implements ICategoryRepository {
   public constructor(@inject(CategoryModel) private categoryModel: typeof CategoryModel) {}

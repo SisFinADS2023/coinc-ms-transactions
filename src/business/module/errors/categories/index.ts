@@ -1,8 +1,8 @@
 export const CategoryCreationFailed = {
-    code: 'CCF-001',
-    message: 'Category creation failed',
-    shortMessage: 'categoryCreationFailed'
-  }
+  code: 'CCF-001',
+  message: 'Category creation failed',
+  shortMessage: 'categoryCreationFailed'
+}
 
 export const CategoryDeleteFailed = {
   code: 'CDF-002',
@@ -17,7 +17,7 @@ export const CategoryNotFound = {
 }
 
 export const CategoryUpdateFailed = {
-  code: 'CDF-004',
+  code: 'CUF-004',
   message: 'Category update failed',
   shortMessage: 'categoryUpdateFailed'
 }

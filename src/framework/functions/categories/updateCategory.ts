@@ -5,8 +5,8 @@ import { APIGatewayProxyEvent, Context } from 'aws-lambda'
 import { httpHandler } from '../../utility/httpHandler'
 import { container } from '../../shared/ioc/container'
 import { httpResponse } from '../../utility/httpResponse'
-import { UpdateCategoryOperator } from '../../../controller/operators/updateCategoryOperator'
-import { InputUpdateCategory } from '../../../controller/serializers/inputUpdateCategory'
+import { UpdateCategoryOperator } from '../../../controller/operators/categories/updateCategoryOperator'
+import { InputUpdateCategory } from '../../../controller/serializers/categories/inputUpdateCategory'
 
 export const handler = httpHandler(async (event: APIGatewayProxyEvent, context: Context) => {
     context.callbackWaitsForEmptyEventLoop = false

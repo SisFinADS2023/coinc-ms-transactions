@@ -1,9 +1,8 @@
 import { injectable, inject } from 'inversify'
-
-import { left, right } from '../../framework/shared/either'
-import { AbstractOperator } from './abstractOperator'
-import { DeleteTransactionUseCase } from '../../business/useCases/deleteTransactionUseCase'
-import { InputDeleteTransaction, OutputDeleteTransaction } from '../serializers/inputDeleteTransaction'
+import { DeleteTransactionUseCase } from '../../../business/useCases/transactions/deleteTransactionUseCase'
+import { left, right } from '../../../framework/shared/either'
+import { InputDeleteTransaction, OutputDeleteTransaction } from '../../serializers/transactions/inputDeleteTransaction'
+import { AbstractOperator } from '../abstractOperator'
 
 @injectable()
 export class DeleteTransactionOperator extends AbstractOperator<InputDeleteTransaction, OutputDeleteTransaction> {

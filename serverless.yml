@@ -12,6 +12,11 @@ provider:
     restApiId: ${ssm:/coinc/infra/api-gateway/id}
     restApiRootResourceId: ${ssm:/coinc/infra/api-gateway/root-resource-id}
 
+  environment:
+    DB_HOST: ${ssm:/coinc/infra/db_host}
+    DB_USER: ${ssm:/coinc/infra/db_user}
+    DB_PASSWORD: ${ssm:/coinc/infra/db_password}
+
 plugins:
   - serverless-esbuild
   - serverless-offline
@@ -90,3 +95,18 @@ functions:
           cors:
             origin: '*'
             headers: '*'
+  listCategory:
+    handler: ${self:custom.funcDir}/categories/listCategories.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/category
+          method: get
+          cors:
+            origin: '*'
+            headers: '*'
+  createSchedule:
+    handler: ${self:custom.funcDir}/schedules/createSchedule.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/schedules
+          method: post

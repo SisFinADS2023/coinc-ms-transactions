@@ -10,9 +10,11 @@ import { ListTransactionsOperator } from '../../../controller/operators/transact
 
 export const handler = httpHandler(async (event: APIGatewayProxyEvent, context: Context) => {
   context.callbackWaitsForEmptyEventLoop = false
-
   const operator = container.get(ListTransactionsOperator)
   const body = event?.queryStringParameters
+
+  console.log({ body })
+
   const input = new InputListTransactions({
     ...(body as object),
     page: body?.page ? Number(body.page) : undefined,

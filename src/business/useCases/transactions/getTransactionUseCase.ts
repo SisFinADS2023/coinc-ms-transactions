@@ -1,10 +1,10 @@
 import { injectable, inject } from 'inversify'
 
-import { left, right } from '../../framework/shared/either'
-import { IUseCase } from './iUseCase'
-import { InputGetTransactionDto, OutputGetTransactionDto } from '../dto/transactionDto'
-import { TransactionGetFailed, TransactionNotFound } from '../module/errors/transactions'
-import { ITransactionRepository, ITransactionRepositoryToken } from '../repositories/iTransactionRepository'
+import { left, right } from '../../../framework/shared/either'
+import { IUseCase } from '../iUseCase'
+import { InputGetTransactionDto, OutputGetTransactionDto } from '../../dto/transactionDto'
+import { TransactionGetFailed, TransactionNotFound } from '../../module/errors/transactions'
+import { ITransactionRepository, ITransactionRepositoryToken } from '../../repositories/iTransactionRepository'
 
 @injectable()
 export class GetTransactionUseCase implements IUseCase<InputGetTransactionDto, OutputGetTransactionDto> {

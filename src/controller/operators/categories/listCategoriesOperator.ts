@@ -1,9 +1,9 @@
 import { inject, injectable } from "inversify"
 
-import { AbstractOperator } from "./abstractOperator"
-import { left, right } from "../../framework/shared/either"
-import { InputListCategories, OutputListCategories } from "../serializers/inputListCategories"
-import { ListCategoriesUseCase } from "../../business/useCases/ListCategoriesUseCase"
+import { AbstractOperator } from "../abstractOperator"
+import { left, right } from "../../../framework/shared/either"
+import { InputListCategories, OutputListCategories } from "../../serializers/categories/inputListCategories"
+import { ListCategoriesUseCase } from "../../../business/useCases/categories/ListCategoriesUseCase"
 
 @injectable()
 export class ListCategoriesOperator extends AbstractOperator<InputListCategories, OutputListCategories> {
