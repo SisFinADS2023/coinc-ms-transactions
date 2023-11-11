@@ -21,3 +21,9 @@ export const CategoryUpdateFailed = {
   message: 'Category update failed',
   shortMessage: 'categoryUpdateFailed'
 }
+
+export const CategoriesListFailed = {
+  code: 'CLF-005',
+  message: 'Categories List Failed',
+  shortMessage: 'categoriesListFailed'
+}

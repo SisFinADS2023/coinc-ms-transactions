@@ -4,6 +4,7 @@ import { inject, injectable } from "inversify"
 import { CategoryModel } from '../models/categoryModel'
 import { ICategoryRepository } from '../../business/repositories/iCategoryRepository'
 import { ICategoryEntity } from '../../domain/entities/categoryEntity'
+import { InputListCategoriesDto } from '../../business/dto/listCategoriesDto'
 
 
 @injectable()
@@ -67,5 +68,18 @@ export class CategoryRepository implements ICategoryRepository {
     console.log('update::response => ', updateResponse)
 
     return updateResponse as ICategoryEntity
+  }
+
+  async list(props: InputListCategoriesDto): Promise<ICategoryEntity[]> {
+    const getResponse = await this.categoryModel.find({
+      userId: props.userId
+    }, null, {
+      skip: props.perPage * (props.page - 1),
+      limit: props.perPage
+    })
+      .select("-__v")
+    console.log('List::response => ', getResponse)
+
+    return getResponse as ICategoryEntity[]
   }
 }
