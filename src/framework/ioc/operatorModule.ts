@@ -8,6 +8,7 @@ import { GetTransactionOperator } from '../../controller/operators/transactions/
 import { UpdateCategoryOperator } from '../../controller/operators/categories/updateCategoryOperator'
 import { ListTransactionsOperator } from '../../controller/operators/transactions/listTransactionsOperator'
 import { ListCategoriesOperator } from '../../controller/operators/categories/listCategoriesOperator'
+import { DeleteScheduleOperator } from '../../controller/operators/schedules/deleteScheduleOperator'
 
 export const OperatorModule = new ContainerModule((bind: interfaces.Bind) => {
   bind(CreateTransactionOperator).toSelf()
@@ -21,4 +22,5 @@ export const OperatorModule = new ContainerModule((bind: interfaces.Bind) => {
   bind(DeleteCategoryOperator).toSelf()
 
   bind(CreateScheduleOperator).toSelf()
+  bind(DeleteScheduleOperator).toSelf()
 })

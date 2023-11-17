@@ -4,4 +4,5 @@ export const IScheduleRepositoryToken = Symbol.for('IScheduleRepository')
 
 export interface IScheduleRepository {
   create(scheduleEntity: IScheduleEntity): Promise<IScheduleEntity>
+  delete(scheduleId: string): Promise<boolean>
 }
