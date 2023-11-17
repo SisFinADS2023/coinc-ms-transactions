@@ -1,3 +1,5 @@
+import { IError } from "../../../../framework/shared/iError"
+
 export const ScheduleCreationFailed = {
   code: 'SCF-001',
   message: 'Schedule creation failed',
@@ -11,7 +13,13 @@ export const ScheduleDeleteFailed = {
 }
 
 export const ScheduleNotFound = {
-  code: 'SNF-002',
+  code: 'SNF-003',
   message: 'Schedule Not Found',
   shortMessage: 'scheduleNotFound'
+}
+
+export const SchedulesListFailed: IError = {
+  code: 'TLF-005',
+  message: 'Transactions list failed',
+  shortMessage: 'transactionsListFailed'
 }

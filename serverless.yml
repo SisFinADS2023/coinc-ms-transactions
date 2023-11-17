@@ -119,3 +119,12 @@ functions:
           cors:
             origin: '*'
             headers: '*'
+  listSchedules:
+    handler: ${self:custom.funcDir}/schedules/listSchedules.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/schedules
+          method: get
+          cors:
+            origin: '*'
+            headers: '*'

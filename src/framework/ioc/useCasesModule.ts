@@ -7,6 +7,7 @@ import { GetTransactionUseCase } from '../../business/useCases/transactions/getT
 import { CreateScheduleUseCase } from '../../business/useCases/schedules/createScheduleUseCase'
 import { UpdateCategoryUseCase } from '../../business/useCases/categories/updateCategoryUseCase'
 import { ListTransactionsUseCase } from '../../business/useCases/transactions/ListTransactionsUseCase'
+import { ListSchedulesUseCase } from '../../business/useCases/schedules/ListSchedulesUseCase'
 import { ListCategoriesUseCase } from '../../business/useCases/categories/ListCategoriesUseCase'
 import { DeleteScheduleUseCase } from '../../business/useCases/schedules/deleteScheduleUseCase'
 
@@ -23,4 +24,5 @@ export const UseCasesModule = new ContainerModule((bind: interfaces.Bind) => {
 
   bind(CreateScheduleUseCase).toSelf()
   bind(DeleteScheduleUseCase).toSelf()
+  bind(ListSchedulesUseCase).toSelf()
 })
