@@ -4,6 +4,7 @@ import { inject, injectable } from "inversify"
 import { ScheduleModel } from '../models/scheduleModel'
 import { IScheduleRepository } from '../../business/repositories/iScheduleRepository'
 import { IScheduleEntity } from '../../domain/entities/scheduleEntity'
+import { InputListSchedulesDto } from '../../business/dto/schedules/listSchedulesDto'
 
 @injectable()
 export class ScheduleRepository implements IScheduleRepository {
@@ -43,5 +44,38 @@ export class ScheduleRepository implements IScheduleRepository {
     }
 
     return createScheduleReturn
+  }
+
+  async list(props: InputListSchedulesDto): Promise<IScheduleEntity[]> {
+    let query = null
+
+    if (props.startDate && props.endDate) {
+      query = {
+        date: {
+          $gte: new Date(props.startDate),
+          $lte: new Date(props.endDate)
+        }
+      }
+    }
+
+    if (props.type) {
+      query = {
+        ...query,
+        valueCents: props.type === 'credit' ? { $gte: 0 } : { $lt: 0 }
+      }
+    }
+
+    const getResponse = await this.scheduleModel.find({
+      userId: props.userId,
+      ...query
+    }, null, {
+      skip: props.perPage * (props.page - 1),
+      limit: props.perPage,
+      sort: {
+        createdAt: props.orderBy ?? 'desc'
+      }
+    }).select("-__v")
+
+    return getResponse as IScheduleEntity[]
   }
 }
