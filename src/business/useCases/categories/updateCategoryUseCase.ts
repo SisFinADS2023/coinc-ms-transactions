@@ -1,10 +1,10 @@
 import { injectable, inject } from 'inversify'
 
-import { left, right } from '../../framework/shared/either'
-import { IUseCase } from './iUseCase'
-import { InputUpdateCategoryDto, OutputUpdateCategoryDto } from '../dto/categoryDto'
-import { CategoryUpdateFailed, CategoryNotFound } from '../module/errors/categories'
-import { ICategoryRepository, ICategoryRepositoryToken } from '../repositories/iCategoryRepository'
+import { left, right } from '../../../framework/shared/either'
+import { IUseCase } from '../iUseCase'
+import { InputUpdateCategoryDto, OutputUpdateCategoryDto } from '../../dto/categoryDto'
+import { CategoryUpdateFailed, CategoryNotFound } from '../../module/errors/categories'
+import { ICategoryRepository, ICategoryRepositoryToken } from '../../repositories/iCategoryRepository'
 
 @injectable()
 export class UpdateCategoryUseCase implements IUseCase<InputUpdateCategoryDto, OutputUpdateCategoryDto> {

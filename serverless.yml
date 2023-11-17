@@ -95,6 +95,15 @@ functions:
           cors:
             origin: '*'
             headers: '*'
+  listCategory:
+    handler: ${self:custom.funcDir}/categories/listCategories.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/category
+          method: get
+          cors:
+            origin: '*'
+            headers: '*'
   createSchedule:
     handler: ${self:custom.funcDir}/schedules/createSchedule.handler
     events:
