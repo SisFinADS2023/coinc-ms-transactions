@@ -7,6 +7,7 @@ import { container } from '../../shared/ioc/container'
 import { httpResponse } from '../../utility/httpResponse'
 import { DeleteTransactionOperator } from '../../../controller/operators/transactions/deleteTransactionOperator'
 import { InputDeleteTransaction } from '../../../controller/serializers/transactions/inputDeleteTransaction'
+import { TransactionNotFound } from '../../../business/module/errors/transactions'
 
 export const handler = httpHandler(async (event: APIGatewayProxyEvent, context: Context) => {
   context.callbackWaitsForEmptyEventLoop = false
@@ -18,6 +19,11 @@ export const handler = httpHandler(async (event: APIGatewayProxyEvent, context: 
   const result = await operator.exec(input)
 
   if (result.isLeft()) {
+
+    if (result.value.code == TransactionNotFound.code) {
+      return httpResponse.notFound(result.value)
+    }
+
     return httpResponse.badRequest(result.value)
   }
 
