@@ -110,6 +110,12 @@ functions:
       - http:
           path: ${self:custom.baseApi}/schedules
           method: post
+  deleteSchedule:
+    handler: ${self:custom.funcDir}/schedules/deleteSchedule.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/schedules/{scheduleId}
+          method: delete
           cors:
             origin: '*'
             headers: '*'

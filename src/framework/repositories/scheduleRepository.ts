@@ -46,6 +46,18 @@ export class ScheduleRepository implements IScheduleRepository {
     return createScheduleReturn
   }
 
+  async delete(scheduleId: String): Promise<boolean> {
+    const deleteResponse = await this.scheduleModel.deleteOne({
+      _id: scheduleId
+    }).select('-__v')
+
+    console.log('delete::response => ', deleteResponse.deletedCount)
+    if (deleteResponse.deletedCount == 1) {
+      return true
+    }
+    return false
+  }
+  
   async list(props: InputListSchedulesDto): Promise<IScheduleEntity[]> {
     let query = null
 
