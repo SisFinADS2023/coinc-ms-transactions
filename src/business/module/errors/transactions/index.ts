@@ -29,3 +29,9 @@ export const TransactionsListFailed: IError = {
   message: 'Transactions list failed',
   shortMessage: 'transactionsListFailed'
 }
+
+export const TransactionUpdateFailed = {
+  code: 'TUF-001',
+  message: 'Transaction update failed',
+  shortMessage: 'transactionUpdateFailed'
+}

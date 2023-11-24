@@ -8,14 +8,14 @@ provider:
   region: 'us-east-1'
   stage: ${opt:stage, "${env:stage, 'dev'}"}
   memorySize: 512
-  apiGateway:
-    restApiId: ${ssm:/coinc/infra/api-gateway/id}
-    restApiRootResourceId: ${ssm:/coinc/infra/api-gateway/root-resource-id}
+  # apiGateway:
+  #   restApiId: ${ssm:/coinc/infra/api-gateway/id}
+  #   restApiRootResourceId: ${ssm:/coinc/infra/api-gateway/root-resource-id}
 
-  environment:
-    DB_HOST: ${ssm:/coinc/infra/db_host}
-    DB_USER: ${ssm:/coinc/infra/db_user}
-    DB_PASSWORD: ${ssm:/coinc/infra/db_password}
+  # environment:
+  #   DB_HOST: ${ssm:/coinc/infra/db_host}
+  #   DB_USER: ${ssm:/coinc/infra/db_user}
+  #   DB_PASSWORD: ${ssm:/coinc/infra/db_password}
 
 plugins:
   - serverless-esbuild
@@ -65,6 +65,15 @@ functions:
       - http:
           path: ${self:custom.baseApi}/{transactionId}
           method: delete
+          cors:
+            origin: '*'
+            headers: '*'
+  updateTransaction:
+    handler: ${self:custom.funcDir}/transactions/updateTransaction.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/
+          method: put
           cors:
             origin: '*'
             headers: '*'

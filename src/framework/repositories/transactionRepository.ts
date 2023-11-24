@@ -67,6 +67,24 @@ export class TransactionRepository implements ITransactionRepository {
     return false
   }
 
+  async update(transactionEntity: Partial<ITransactionEntity>): Promise<ITransactionEntity> {
+    const updateResponse = await this.transactionModel.findOneAndUpdate({_id: transactionEntity.transactionId}, {
+      _id: transactionEntity.transactionId,
+      bankAccountId: transactionEntity.bankAccountId,
+      userId: transactionEntity.userId,
+      name: transactionEntity.name,
+      valueCents: transactionEntity.valueCents,
+      categories: transactionEntity.categories,
+      date: transactionEntity.date,
+      createdAt: transactionEntity.createdAt,
+      updatedAt: transactionEntity.updatedAt
+    }, {new: true}).select('-__v')
+
+    console.log('update::response => ', updateResponse)
+
+    return updateResponse as ITransactionEntity
+  }
+
   async list(props: InputListTransactionsDto): Promise<ITransactionEntity[]> {
     let query = null
 
