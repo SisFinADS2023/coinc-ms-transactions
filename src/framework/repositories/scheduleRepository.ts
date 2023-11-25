@@ -57,6 +57,20 @@ export class ScheduleRepository implements IScheduleRepository {
     }
     return false
   }
+
+  async update(scheduleEntity: Partial<IScheduleEntity>): Promise<IScheduleEntity> {
+    const updateResponse = await this.scheduleModel.findOneAndUpdate({_id: scheduleEntity.scheduleId}, {
+      scheduleId: scheduleEntity.scheduleId,
+      transaction: scheduleEntity.transaction,
+      quantity: scheduleEntity.quantity,
+      interval: scheduleEntity.interval,
+      startDate: scheduleEntity.startDate
+    }, {new: true}).select('-__v')
+
+    console.log('update::response =>', updateResponse)
+
+    return updateResponse as IScheduleEntity
+  }
   
   async list(props: InputListSchedulesDto): Promise<IScheduleEntity[]> {
     let query = null

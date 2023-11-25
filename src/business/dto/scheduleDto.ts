@@ -19,5 +19,19 @@ export interface InputDeleteScheduleDto {
   scheduleId: string
 }
 
+export interface InputUpdateScheduleDto {
+  scheduleId: string
+  transaction?: {
+    bankAccountId?: string
+    name?: string
+    valueCents?: Number
+    categories?: [string]
+  }
+  quantity?: Number
+  interval?: Number
+  startDate?: Date
+}
+
 export type OutputCreateScheduleDto = Either<IError, IScheduleEntity>
 export type OutputDeleteScheduleDto = Either<IError, boolean>
+export type OutputUpdateScheduleDto = Either<IError, IScheduleEntity>
