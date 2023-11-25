@@ -90,4 +90,14 @@ export class ScheduleRepository implements IScheduleRepository {
 
     return getResponse as IScheduleEntity[]
   }
+
+  async listAll(day: Date): Promise<IScheduleEntity[]> {
+    const getResponse = await this.scheduleModel.find({
+      startDate: day
+    }, null, {
+      limit: 50
+    }).select("-__v")
+
+    return getResponse as IScheduleEntity[]
+  }
 }

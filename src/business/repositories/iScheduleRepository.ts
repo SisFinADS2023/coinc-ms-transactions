@@ -7,4 +7,5 @@ export interface IScheduleRepository {
   create(scheduleEntity: IScheduleEntity): Promise<IScheduleEntity>
   delete(scheduleId: string): Promise<boolean>
   list(props: InputListSchedulesDto): Promise<IScheduleEntity[]>
+  listAll(day: Date): Promise<IScheduleEntity[]>
 }

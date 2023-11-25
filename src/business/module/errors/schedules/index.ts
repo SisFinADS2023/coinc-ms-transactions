@@ -19,7 +19,13 @@ export const ScheduleNotFound = {
 }
 
 export const SchedulesListFailed: IError = {
-  code: 'TLF-005',
-  message: 'Transactions list failed',
-  shortMessage: 'transactionsListFailed'
+  code: 'SLF-005',
+  message: 'Schedules list failed',
+  shortMessage: 'schedulesListFailed'
+}
+
+export const SchedulesTriggerFailed = {
+  code: 'STF-006',
+  message: 'Schedules trigger failed',
+  shortMessage: 'schedulesTriggerFailed'
 }
