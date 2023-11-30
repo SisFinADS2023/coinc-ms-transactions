@@ -5,6 +5,7 @@ import { ScheduleModel } from '../models/scheduleModel'
 import { IScheduleRepository } from '../../business/repositories/iScheduleRepository'
 import { IScheduleEntity } from '../../domain/entities/scheduleEntity'
 import { InputListSchedulesDto } from '../../business/dto/schedules/listSchedulesDto'
+import { endOfDay, startOfDay } from 'date-fns'
 
 @injectable()
 export class ScheduleRepository implements IScheduleRepository {
@@ -93,7 +94,10 @@ export class ScheduleRepository implements IScheduleRepository {
 
   async listAll(day: Date): Promise<IScheduleEntity[]> {
     const getResponse = await this.scheduleModel.find({
-      startDate: day
+      startDate: {
+        $gte: startOfDay(day),
+        $lte: endOfDay(day)
+      }
     }, null, {
       limit: 50
     }).select("-__v")

@@ -110,6 +110,9 @@ functions:
       - http:
           path: ${self:custom.baseApi}/schedules
           method: post
+          cors:
+            origin: '*'
+            headers: '*'
   deleteSchedule:
     handler: ${self:custom.funcDir}/schedules/deleteSchedule.handler
     events:
@@ -128,3 +131,8 @@ functions:
           cors:
             origin: '*'
             headers: '*'
+  triggerSchedules:
+    handler: ${self:custom.funcDir}/schedules/triggerSchedules.handler
+    events:
+      - schedule:
+          rate: rate(1 hour)

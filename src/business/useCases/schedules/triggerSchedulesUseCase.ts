@@ -15,7 +15,21 @@ export class TriggerSchedulesUseCase {
     try {
       const today = new Date(Date.now())
       const scheduleResult = await this.scheduleRepository.listAll(today)
-      console.log('schedule => ', scheduleResult)
+
+      for (let i = 0; i < scheduleResult.length; i++) {
+        let transactionResult = await this.transactionRepository.create({
+          bankAccountId: scheduleResult[i]?.transaction.bankAccountId,
+          userId: scheduleResult[i]?.userId!,
+          name: scheduleResult[i]?.transaction.name!,
+          valueCents: scheduleResult[i]?.transaction.valueCents!,
+          categories: scheduleResult[i]?.transaction.categories,
+          date: today,
+        })
+        console.log('triggerScheduleTransactionNumber => ', i + 1, ' of ', scheduleResult.length)
+        console.log('triggerScheduleTransactionResult => ', transactionResult)
+      }
+
+      console.log('triggerScheduleUseCaseResult => ', scheduleResult)
     } catch (error) {
       console.log(SchedulesTriggerFailed.message)
     }
