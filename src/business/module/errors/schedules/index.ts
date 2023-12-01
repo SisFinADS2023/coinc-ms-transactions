@@ -29,3 +29,9 @@ export const SchedulesListFailed: IError = {
   message: 'Transactions list failed',
   shortMessage: 'transactionsListFailed'
 }
+
+export const ScheduleGetFailed = {
+  code: 'SGF-006',
+  message: 'Schedule Get Failed',
+  shortMessage: 'scheduleGetFailed'
+}
