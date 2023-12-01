@@ -15,6 +15,10 @@ export interface InputCreateScheduleDto {
   startDate?: Date
 }
 
+export interface InputGetScheduleDto {
+  scheduleId: string
+}
+
 export interface InputDeleteScheduleDto {
   scheduleId: string
 }
@@ -33,5 +37,6 @@ export interface InputUpdateScheduleDto {
 }
 
 export type OutputCreateScheduleDto = Either<IError, IScheduleEntity>
+export type OutputGetScheduleDto = Either<IError, IScheduleEntity>
 export type OutputDeleteScheduleDto = Either<IError, boolean>
 export type OutputUpdateScheduleDto = Either<IError, IScheduleEntity>

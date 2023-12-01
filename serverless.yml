@@ -104,6 +104,15 @@ functions:
           cors:
             origin: '*'
             headers: '*'
+  getSchedule:
+    handler: ${self:custom.funcDir}/schedules/getSchedule.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/schedules/{scheduleId}
+          method: get
+          cors:
+            origin: '*'
+            headers: '*'
   createSchedule:
     handler: ${self:custom.funcDir}/schedules/createSchedule.handler
     events:
