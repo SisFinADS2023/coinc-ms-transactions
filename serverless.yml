@@ -122,6 +122,15 @@ functions:
           cors:
             origin: '*'
             headers: '*'
+  updateSchedule:
+    handler: ${self:custom.funcDir}/schedules/updateSchedule.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/schedules/
+          method: put
+          cors:
+            origin: '*'
+            headers: '*'
   listSchedules:
     handler: ${self:custom.funcDir}/schedules/listSchedules.handler
     events:
