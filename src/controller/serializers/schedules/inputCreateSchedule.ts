@@ -43,7 +43,7 @@ export class InputCreateSchedule extends Validatable<InputCreateSchedule> {
 
   @IsNotEmpty()
   @IsIn(Object.values(IntervalTypes))
-  interval?: IntervalTypes
+  interval!: IntervalTypes
 
   @IsOptional()
   @IsDate()

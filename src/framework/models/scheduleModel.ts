@@ -30,6 +30,10 @@ const scheduleSchema = new Schema<IScheduleEntity> (
       type: String,
       required: true
     },
+    quantity: {
+      type: Number,
+      required: false
+    },
     startDate: {
       type: Date,
       required: true,

@@ -17,8 +17,7 @@ export class TriggerSchedulesUseCase {
       const scheduleResult = await this.scheduleRepository.listAll(today)
 
       for (let i = 0; i < scheduleResult.length; i++) {
-        console.log('scheduleResult[i] => ', scheduleResult[i])
-        if (scheduleResult[i]?.quantity && scheduleResult[i]?.quantity != 0) break
+        if (scheduleResult[i]?.quantity && scheduleResult[i]?.quantity == 0) break
 
         const createTransactionResult = await this.transactionRepository.create({
           bankAccountId: scheduleResult[i]?.transaction.bankAccountId,
@@ -29,26 +28,26 @@ export class TriggerSchedulesUseCase {
           date: today,
         })
 
-        let newStartDate
-        if (scheduleResult[i]?.startDate) {
+        let newStartDate = scheduleResult[i]?.startDate!
         switch (scheduleResult[i]?.interval) {
           case 'daily':
-            newStartDate = new Date(scheduleResult[i]?.startDate?.getDate() + 1);
+            newStartDate.setDate(scheduleResult[i]?.startDate?.getDate() + 1);
             break;
           case 'weekly':
-              newStartDate = new Date(scheduleResult[i]?.startDate?.getDate() + 7);
-              break;
+            newStartDate.setDate(scheduleResult[i]?.startDate?.getDate() + 7);
+            break;
           case 'monthly':
-            newStartDate = new Date(scheduleResult[i]?.startDate?.getDate() + 30);
+            newStartDate.setDate(scheduleResult[i]?.startDate?.getDate() + 30);
             break;
           default:
             console.log('triggerSchedulesError::unknownIntervalType => ', scheduleResult[i]?.interval)
-        }}
-        console.log('newStartDate => ', newStartDate)
+        }
 
         let updateScheduleResult
+        console.log('scheduleResult[i] => ', scheduleResult[i])
+        console.log('scheduleResult[i]?.quantity => ', scheduleResult[i]?.quantity)
         if (scheduleResult[i]?.quantity) {
-          const newQuantity = +scheduleResult[i]?.quantity! + 1
+          const newQuantity = +scheduleResult[i]?.quantity! - 1
           console.log('newQuantity => ', newQuantity)
           updateScheduleResult = await this.scheduleRepository.update({
             scheduleId: scheduleResult[i]?.scheduleId,
@@ -62,7 +61,7 @@ export class TriggerSchedulesUseCase {
           })
         }
 
-        console.log('triggerScheduleTransactionNumber => ', i + 1, ' of ', scheduleResult.length)
+        console.log('triggerScheduleNumber => ', i + 1, ' of ', scheduleResult.length)
         console.log('triggerScheduleTransactionResult => ', createTransactionResult)
         console.log('triggerScheduleUpdateResult => ', updateScheduleResult)
       }
