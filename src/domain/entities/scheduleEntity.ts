@@ -1,5 +1,11 @@
 import { AbstractEntity } from './abstractEntity'
 
+export enum IntervalTypes {
+  DAILY = 'daily',
+  WEEKLY = 'weekly',
+  MONTHLY = 'monthly',
+}
+
 export interface IScheduleEntity {
   scheduleId?: string
   userId: string
@@ -10,7 +16,7 @@ export interface IScheduleEntity {
     categories?: [string]
   }
   quantity?: Number
-  interval: Number
+  interval: IntervalTypes
   startDate?: Date
   createdAt?: Date
   updatedAt?: Date

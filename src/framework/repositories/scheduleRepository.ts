@@ -103,7 +103,18 @@ export class ScheduleRepository implements IScheduleRepository {
       }
     }).select("-__v")
 
-    return getResponse as IScheduleEntity[]
+    const response = getResponse.map(has => ({
+      scheduleId: String(has._id),
+      userId: has.userId,
+      transaction: has.transaction,
+      quantity: has.quantity,
+      interval: has.interval,
+      startDate: has.startDate,
+      createdAt: has.createdAt,
+      updatedAt: has.updatedAt
+    }))
+
+    return response as IScheduleEntity[]
   }
 
   async listAll(day: Date): Promise<IScheduleEntity[]> {
@@ -116,6 +127,17 @@ export class ScheduleRepository implements IScheduleRepository {
       limit: 50
     }).select("-__v")
 
-    return getResponse as IScheduleEntity[]
+    const response = getResponse.map(has => ({
+      scheduleId: String(has._id),
+      userId: has.userId,
+      transaction: has.transaction,
+      quantity: has.quantity,
+      interval: has.interval,
+      startDate: has.startDate,
+      createdAt: has.createdAt,
+      updatedAt: has.updatedAt
+    }))
+
+    return response as IScheduleEntity[]
   }
 }

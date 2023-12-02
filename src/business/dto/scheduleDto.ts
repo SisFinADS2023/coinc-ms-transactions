@@ -1,4 +1,4 @@
-import { IScheduleEntity } from "../../domain/entities/scheduleEntity"
+import { IntervalTypes, IScheduleEntity } from "../../domain/entities/scheduleEntity"
 import { Either } from "../../framework/shared/either"
 import { IError } from "../../framework/shared/iError"
 
@@ -11,7 +11,7 @@ export interface InputCreateScheduleDto {
     categories?: [string]
   }
   quantity?: Number
-  interval: Number
+  interval: IntervalTypes
   startDate?: Date
 }
 
@@ -28,7 +28,7 @@ export interface InputUpdateScheduleDto {
     categories?: [string]
   }
   quantity?: Number
-  interval?: Number
+  interval?: IntervalTypes
   startDate?: Date
 }
 

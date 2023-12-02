@@ -1,7 +1,7 @@
 import { Type } from 'class-transformer'
-import { IsMongoId, IsNotEmpty, IsNumber, IsOptional, IsString, IsObject, ValidateNested, IsNotEmptyObject, IsDate } from 'class-validator'
+import { IsMongoId, IsNotEmpty, IsNumber, IsOptional, IsString, IsObject, ValidateNested, IsNotEmptyObject, IsDate, IsIn } from 'class-validator'
 
-import { IScheduleEntity } from '../../../domain/entities/scheduleEntity'
+import { IntervalTypes, IScheduleEntity } from '../../../domain/entities/scheduleEntity'
 import { Either } from '../../../framework/shared/either'
 import { IError } from '../../../framework/shared/iError'
 import { Validatable } from '../abstractValidatable'
@@ -41,8 +41,8 @@ export class InputUpdateSchedule extends Validatable<InputUpdateSchedule> {
     quantity?: Number
 
     @IsOptional()
-    @IsNumber()
-    interval?: Number
+    @IsIn(Object.values(IntervalTypes))
+    interval?: IntervalTypes
 
     @IsOptional()
     @IsDate()
