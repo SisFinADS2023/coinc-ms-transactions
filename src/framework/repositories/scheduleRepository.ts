@@ -47,6 +47,20 @@ export class ScheduleRepository implements IScheduleRepository {
     return createScheduleReturn
   }
 
+  async get(scheduleId: string): Promise<IScheduleEntity> {
+    const getResponse = await this.scheduleModel.findById({ _id: scheduleId }).populate({
+      path: 'transaction',
+      populate:({
+        path: 'categories',
+        select: 'id name icon color'
+      })
+    }).select('-__v')
+
+    console.log('get::response => ', getResponse)
+
+    return getResponse as IScheduleEntity
+  }
+
   async delete(scheduleId: String): Promise<boolean> {
     const deleteResponse = await this.scheduleModel.deleteOne({
       _id: scheduleId

@@ -6,32 +6,38 @@ export const ScheduleCreationFailed = {
   shortMessage: 'scheduleCreationFailed'
 }
 
+export const ScheduleGetFailed = {
+  code: 'SGF-002',
+  message: 'Schedule Get Failed',
+  shortMessage: 'scheduleGetFailed'
+}
+
 export const ScheduleDeleteFailed = {
-  code: 'SDF-002',
+  code: 'SDF-003',
   message: 'Schedule delete failed',
   shortMessage: 'scheduleDeleteFailed'
 }
 
 export const ScheduleNotFound = {
-  code: 'SNF-003',
+  code: 'SNF-004',
   message: 'Schedule Not Found',
   shortMessage: 'scheduleNotFound'
 }
 
 export const ScheduleUpdateFailed = {
-  code: 'SUF-004',
+  code: 'SUF-005',
   message: 'Schedule update Failed',
   shortMessage: 'scheduleUpdateFailed'
 }
 
 export const SchedulesListFailed: IError = {
-  code: 'SLF-005',
+  code: 'SLF-006',
   message: 'Schedules list failed',
   shortMessage: 'schedulesListFailed'
 }
 
 export const SchedulesTriggerFailed = {
-  code: 'STF-006',
+  code: 'STF-008',
   message: 'Schedules trigger failed',
   shortMessage: 'schedulesTriggerFailed'
 }

@@ -9,6 +9,7 @@ type RecursivePartial<T> = {
 
 export interface IScheduleRepository {
   create(scheduleEntity: IScheduleEntity): Promise<IScheduleEntity>
+  get(scheduleId: string): Promise<IScheduleEntity>
   delete(scheduleId: string): Promise<boolean>
   update(scheduleEntity: RecursivePartial<IScheduleEntity>): Promise<IScheduleEntity>
   list(props: InputListSchedulesDto): Promise<IScheduleEntity[]>
