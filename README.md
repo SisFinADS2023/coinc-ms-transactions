@@ -1,4 +1,4 @@
-# ms-users
+# coinc-ms-transactions
 
 ### Dependencies to run the project
 - Have Node installed, preferably version 16.14.2
