@@ -15,6 +15,9 @@ jobs:
 
     steps:
       - uses: aws-actions/configure-aws-credentials@b8c74de753fbcb4868bf2011fb2e15826ce973af
+        with:
+          role-to-assume: arn:aws:iam::882227338556:role/coinc-ms-bank-accounts-dev-us-east-1-lambdaRole
+          aws-region: us-east-1
 
       - uses: actions/setup-node@v3
         with:
