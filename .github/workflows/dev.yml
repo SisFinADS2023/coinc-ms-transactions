@@ -14,10 +14,9 @@ jobs:
       contents: read
 
     steps:
-      - uses: aws-actions/configure-aws-credentials@1b511abead59c6ce207077c0bf0e0043b1382612
+      - uses: actions/checkout@v3
         with:
-          role-to-assume: arn:aws:iam::882227338556:role/coinc-ms-bank-accounts-dev-us-east-1-lambdaRole
-          aws-region: us-east-1
+          persist-credentials: false
 
       - uses: actions/setup-node@v3
         with:
