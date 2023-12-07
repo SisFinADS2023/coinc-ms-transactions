@@ -15,8 +15,6 @@ jobs:
 
     steps:
       - uses: aws-actions/configure-aws-credentials@b8c74de753fbcb4868bf2011fb2e15826ce973af
-        with:
-          persist-credentials: false
 
       - uses: actions/setup-node@v3
         with:
