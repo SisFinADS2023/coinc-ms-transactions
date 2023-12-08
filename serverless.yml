@@ -38,81 +38,63 @@ functions:
       - http:
           path: ${self:custom.baseApi}/
           method: post
-          cors:
-            origin: '*'
-            headers: '*'
+          cors: true
   getTransaction:
     handler: ${self:custom.funcDir}/transactions/getTransaction.handler
     events:
       - http:
           path: ${self:custom.baseApi}/{transactionId}
           method: get
-          cors:
-            origin: '*'
-            headers: '*'
+          cors: true
   listTransactions:
     handler: ${self:custom.funcDir}/transactions/listTransactions.handler
     events:
       - http:
           path: ${self:custom.baseApi}
           method: get
-          cors:
-            origin: '*'
-            headers: '*'
+          cors: true
   deleteTransaction:
     handler: ${self:custom.funcDir}/transactions/deleteTransaction.handler
     events:
       - http:
           path: ${self:custom.baseApi}/{transactionId}
           method: delete
-          cors:
-            origin: '*'
-            headers: '*'
+          cors: true
   createCategory:
     handler: ${self:custom.funcDir}/categories/createCategory.handler
     events:
       - http:
           path: ${self:custom.baseApi}/category
           method: post
-          cors:
-            origin: '*'
-            headers: '*'
+          cors: true
   deleteCategory:
     handler: ${self:custom.funcDir}/categories/deleteCategory.handler
     events:
       - http:
           path: ${self:custom.baseApi}/category/{categoryId}
           method: delete
-          cors:
-            origin: '*'
-            headers: '*'
+          cors: true
   updateCategory:
     handler: ${self:custom.funcDir}/categories/updateCategory.handler
     events:
       - http:
           path: ${self:custom.baseApi}/category/
           method: put
-          cors:
-            origin: '*'
-            headers: '*'
+          cors: true
   listCategory:
     handler: ${self:custom.funcDir}/categories/listCategories.handler
     events:
       - http:
           path: ${self:custom.baseApi}/category
           method: get
-          cors:
-            origin: '*'
-            headers: '*'
+          cors: true
   getSchedule:
     handler: ${self:custom.funcDir}/schedules/getSchedule.handler
     events:
       - http:
           path: ${self:custom.baseApi}/schedules/{scheduleId}
           method: get
-          cors:
-            origin: '*'
-            headers: '*'
+          cors: true
   createSchedule:
     handler: ${self:custom.funcDir}/schedules/createSchedule.handler
     events:
@@ -125,24 +107,18 @@ functions:
       - http:
           path: ${self:custom.baseApi}/schedules/{scheduleId}
           method: delete
-          cors:
-            origin: '*'
-            headers: '*'
+          cors: true
   listSchedules:
     handler: ${self:custom.funcDir}/schedules/listSchedules.handler
     events:
       - http:
           path: ${self:custom.baseApi}/schedules
           method: get
-          cors:
-            origin: '*'
-            headers: '*'
+          cors: true
   updateSchedules:
     handler: ${self:custom.funcDir}/schedules/updateSchedule.handler
     events:
       - http:
           path: ${self:custom.baseApi}/schedules/
           method: put
-          cors:
-            origin: '*'
-            headers: '*'
+          cors: true
