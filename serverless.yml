@@ -38,63 +38,99 @@ functions:
       - http:
           path: ${self:custom.baseApi}/
           method: post
-          cors: true
+          cors:
+            - enabled: true
+            - origin: '*'
+            - headers: '*'
+            - methods: 'POST'
   getTransaction:
     handler: ${self:custom.funcDir}/transactions/getTransaction.handler
     events:
       - http:
           path: ${self:custom.baseApi}/{transactionId}
           method: get
-          cors: true
+          cors:
+            - enabled: true
+            - origin: '*'
+            - headers: '*'
+            - methods: 'GET'
   listTransactions:
     handler: ${self:custom.funcDir}/transactions/listTransactions.handler
     events:
       - http:
           path: ${self:custom.baseApi}
           method: get
-          cors: true
+          cors:
+            - enabled: true
+            - origin: '*'
+            - headers: '*'
+            - methods: 'GET'
   deleteTransaction:
     handler: ${self:custom.funcDir}/transactions/deleteTransaction.handler
     events:
       - http:
           path: ${self:custom.baseApi}/{transactionId}
           method: delete
-          cors: true
+          cors:
+            - enabled: true
+            - origin: '*'
+            - headers: '*'
+            - methods: 'DELETE'
   createCategory:
     handler: ${self:custom.funcDir}/categories/createCategory.handler
     events:
       - http:
           path: ${self:custom.baseApi}/category
           method: post
-          cors: true
+          cors:
+            - enabled: true
+            - origin: '*'
+            - headers: '*'
+            - methods: 'POST'
   deleteCategory:
     handler: ${self:custom.funcDir}/categories/deleteCategory.handler
     events:
       - http:
           path: ${self:custom.baseApi}/category/{categoryId}
           method: delete
-          cors: true
+          cors:
+            - enabled: true
+            - origin: '*'
+            - headers: '*'
+            - methods: 'DELETE'
   updateCategory:
     handler: ${self:custom.funcDir}/categories/updateCategory.handler
     events:
       - http:
           path: ${self:custom.baseApi}/category/
           method: put
-          cors: true
+          cors:
+            - enabled: true
+            - origin: '*'
+            - headers: '*'
+            - methods: 'PUT'
   listCategory:
     handler: ${self:custom.funcDir}/categories/listCategories.handler
     events:
       - http:
           path: ${self:custom.baseApi}/category
           method: get
-          cors: true
+          cors:
+            - enabled: true
+            - origin: '*'
+            - headers: '*'
+            - methods: 'GET'
   getSchedule:
     handler: ${self:custom.funcDir}/schedules/getSchedule.handler
     events:
       - http:
           path: ${self:custom.baseApi}/schedules/{scheduleId}
           method: get
-          cors: true
+          cors:
+            - enabled: true
+            - origin: '*'
+            - headers: '*'
+            - methods: 'GET'
   createSchedule:
     handler: ${self:custom.funcDir}/schedules/createSchedule.handler
     events:
@@ -107,18 +143,30 @@ functions:
       - http:
           path: ${self:custom.baseApi}/schedules/{scheduleId}
           method: delete
-          cors: true
+          cors:
+            - enabled: true
+            - origin: '*'
+            - headers: '*'
+            - methods: 'DELETE'
   listSchedules:
     handler: ${self:custom.funcDir}/schedules/listSchedules.handler
     events:
       - http:
           path: ${self:custom.baseApi}/schedules
           method: get
-          cors: true
+          cors:
+            - enabled: true
+            - origin: '*'
+            - headers: '*'
+            - methods: 'GET'
   updateSchedules:
     handler: ${self:custom.funcDir}/schedules/updateSchedule.handler
     events:
       - http:
           path: ${self:custom.baseApi}/schedules/
           method: put
-          cors: true
+          cors:
+            - enabled: true
+            - origin: '*'
+            - headers: '*'
+            - methods: 'PUT'
