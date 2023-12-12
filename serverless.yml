@@ -39,10 +39,8 @@ functions:
           path: ${self:custom.baseApi}/
           method: post
           cors:
-            - enabled: true
-            - origin: '*'
-            - headers: '*'
-            - methods: 'POST'
+            origin: '*'
+            headers: '*'
   getTransaction:
     handler: ${self:custom.funcDir}/transactions/getTransaction.handler
     events:
@@ -50,10 +48,8 @@ functions:
           path: ${self:custom.baseApi}/{transactionId}
           method: get
           cors:
-            - enabled: true
-            - origin: '*'
-            - headers: '*'
-            - methods: 'GET'
+            origin: '*'
+            headers: '*'
   listTransactions:
     handler: ${self:custom.funcDir}/transactions/listTransactions.handler
     events:
@@ -61,10 +57,8 @@ functions:
           path: ${self:custom.baseApi}
           method: get
           cors:
-            - enabled: true
-            - origin: '*'
-            - headers: '*'
-            - methods: 'GET'
+            origin: '*'
+            headers: '*'
   deleteTransaction:
     handler: ${self:custom.funcDir}/transactions/deleteTransaction.handler
     events:
@@ -72,10 +66,8 @@ functions:
           path: ${self:custom.baseApi}/{transactionId}
           method: delete
           cors:
-            - enabled: true
-            - origin: '*'
-            - headers: '*'
-            - methods: 'DELETE'
+            origin: '*'
+            headers: '*'
   createCategory:
     handler: ${self:custom.funcDir}/categories/createCategory.handler
     events:
@@ -83,10 +75,8 @@ functions:
           path: ${self:custom.baseApi}/category
           method: post
           cors:
-            - enabled: true
-            - origin: '*'
-            - headers: '*'
-            - methods: 'POST'
+            origin: '*'
+            headers: '*'
   deleteCategory:
     handler: ${self:custom.funcDir}/categories/deleteCategory.handler
     events:
@@ -94,10 +84,8 @@ functions:
           path: ${self:custom.baseApi}/category/{categoryId}
           method: delete
           cors:
-            - enabled: true
-            - origin: '*'
-            - headers: '*'
-            - methods: 'DELETE'
+            origin: '*'
+            headers: '*'
   updateCategory:
     handler: ${self:custom.funcDir}/categories/updateCategory.handler
     events:
@@ -105,10 +93,8 @@ functions:
           path: ${self:custom.baseApi}/category/
           method: put
           cors:
-            - enabled: true
-            - origin: '*'
-            - headers: '*'
-            - methods: 'PUT'
+            origin: '*'
+            headers: '*'
   listCategory:
     handler: ${self:custom.funcDir}/categories/listCategories.handler
     events:
@@ -116,10 +102,8 @@ functions:
           path: ${self:custom.baseApi}/category
           method: get
           cors:
-            - enabled: true
-            - origin: '*'
-            - headers: '*'
-            - methods: 'GET'
+            origin: '*'
+            headers: '*'
   getSchedule:
     handler: ${self:custom.funcDir}/schedules/getSchedule.handler
     events:
@@ -127,16 +111,17 @@ functions:
           path: ${self:custom.baseApi}/schedules/{scheduleId}
           method: get
           cors:
-            - enabled: true
-            - origin: '*'
-            - headers: '*'
-            - methods: 'GET'
+            origin: '*'
+            headers: '*'
   createSchedule:
     handler: ${self:custom.funcDir}/schedules/createSchedule.handler
     events:
       - http:
           path: ${self:custom.baseApi}/schedules
           method: post
+          cors:
+            origin: '*'
+            headers: '*'
   deleteSchedule:
     handler: ${self:custom.funcDir}/schedules/deleteSchedule.handler
     events:
@@ -144,10 +129,17 @@ functions:
           path: ${self:custom.baseApi}/schedules/{scheduleId}
           method: delete
           cors:
-            - enabled: true
-            - origin: '*'
-            - headers: '*'
-            - methods: 'DELETE'
+            origin: '*'
+            headers: '*'
+  updateSchedule:
+    handler: ${self:custom.funcDir}/schedules/updateSchedule.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/schedules/
+          method: put
+          cors:
+            origin: '*'
+            headers: '*'
   listSchedules:
     handler: ${self:custom.funcDir}/schedules/listSchedules.handler
     events:
@@ -155,18 +147,10 @@ functions:
           path: ${self:custom.baseApi}/schedules
           method: get
           cors:
-            - enabled: true
-            - origin: '*'
-            - headers: '*'
-            - methods: 'GET'
-  updateSchedules:
-    handler: ${self:custom.funcDir}/schedules/updateSchedule.handler
+            origin: '*'
+            headers: '*'
+  triggerSchedules:
+    handler: ${self:custom.funcDir}/schedules/triggerSchedules.handler
     events:
-      - http:
-          path: ${self:custom.baseApi}/schedules/
-          method: put
-          cors:
-            - enabled: true
-            - origin: '*'
-            - headers: '*'
-            - methods: 'PUT'
+      - schedule:
+          rate: rate(1 hour)

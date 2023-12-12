@@ -13,4 +13,5 @@ export interface IScheduleRepository {
   delete(scheduleId: string): Promise<boolean>
   update(scheduleEntity: RecursivePartial<IScheduleEntity>): Promise<IScheduleEntity>
   list(props: InputListSchedulesDto): Promise<IScheduleEntity[]>
+  listAll(day: Date): Promise<IScheduleEntity[]>
 }
