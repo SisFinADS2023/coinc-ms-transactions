@@ -18,6 +18,12 @@ export const ScheduleNotFound = {
   shortMessage: 'scheduleNotFound'
 }
 
+export const ScheduleUpdateFailed = {
+  code: 'SUF-004',
+  message: 'Schedule update Failed',
+  shortMessage: 'scheduleUpdateFailed'
+}
+
 export const SchedulesListFailed: IError = {
   code: 'TLF-005',
   message: 'Transactions list failed',

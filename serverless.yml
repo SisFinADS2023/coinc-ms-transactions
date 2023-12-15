@@ -137,3 +137,12 @@ functions:
           cors:
             origin: '*'
             headers: '*'
+  updateSchedules:
+    handler: ${self:custom.funcDir}/schedules/updateSchedule.handler
+    events:
+      - http:
+          path: ${self:custom.baseApi}/schedules/
+          method: put
+          cors:
+            origin: '*'
+            headers: '*'
