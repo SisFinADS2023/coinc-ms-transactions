@@ -27,8 +27,12 @@ const scheduleSchema = new Schema<IScheduleEntity> (
       }]
     },
     interval: {
-      type: Number,
+      type: String,
       required: true
+    },
+    quantity: {
+      type: Number,
+      required: false
     },
     startDate: {
       type: Date,

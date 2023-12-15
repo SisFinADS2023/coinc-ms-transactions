@@ -5,6 +5,7 @@ import { ScheduleModel } from '../models/scheduleModel'
 import { IScheduleRepository } from '../../business/repositories/iScheduleRepository'
 import { IScheduleEntity } from '../../domain/entities/scheduleEntity'
 import { InputListSchedulesDto } from '../../business/dto/schedules/listSchedulesDto'
+import { endOfDay, startOfDay } from 'date-fns'
 
 @injectable()
 export class ScheduleRepository implements IScheduleRepository {
@@ -44,6 +45,20 @@ export class ScheduleRepository implements IScheduleRepository {
     }
 
     return createScheduleReturn
+  }
+
+  async get(scheduleId: string): Promise<IScheduleEntity> {
+    const getResponse = await this.scheduleModel.findById({ _id: scheduleId }).populate({
+      path: 'transaction',
+      populate:({
+        path: 'categories',
+        select: 'id name icon color'
+      })
+    }).select('-__v')
+
+    console.log('get::response => ', getResponse)
+
+    return getResponse as IScheduleEntity
   }
 
   async delete(scheduleId: String): Promise<boolean> {
@@ -102,6 +117,41 @@ export class ScheduleRepository implements IScheduleRepository {
       }
     }).select("-__v")
 
-    return getResponse as IScheduleEntity[]
+    const response = getResponse.map(has => ({
+      scheduleId: String(has._id),
+      userId: has.userId,
+      transaction: has.transaction,
+      quantity: has.quantity,
+      interval: has.interval,
+      startDate: has.startDate,
+      createdAt: has.createdAt,
+      updatedAt: has.updatedAt
+    }))
+
+    return response as IScheduleEntity[]
+  }
+
+  async listAll(day: Date): Promise<IScheduleEntity[]> {
+    const getResponse = await this.scheduleModel.find({
+      startDate: {
+        $gte: startOfDay(day),
+        $lte: endOfDay(day)
+      }
+    }, null, {
+      limit: 50
+    }).select("-__v")
+
+    const response = getResponse.map(has => ({
+      scheduleId: String(has._id),
+      userId: has.userId,
+      transaction: has.transaction,
+      quantity: has.quantity,
+      interval: has.interval,
+      startDate: has.startDate,
+      createdAt: has.createdAt,
+      updatedAt: has.updatedAt
+    }))
+
+    return response as IScheduleEntity[]
   }
 }
