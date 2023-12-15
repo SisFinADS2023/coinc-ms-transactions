@@ -8,4 +8,5 @@ export interface ITransactionRepository {
   delete(transactionId: string): Promise<boolean>
   list(props: InputListTransactionsDto): Promise<ITransactionEntity[]>
   get(transactionId: string): Promise<ITransactionEntity>
+  update(transactionEntity: Partial<ITransactionEntity>): Promise<ITransactionEntity>
 }

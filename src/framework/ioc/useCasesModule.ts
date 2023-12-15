@@ -10,6 +10,7 @@ import { ListTransactionsUseCase } from '../../business/useCases/transactions/Li
 import { ListSchedulesUseCase } from '../../business/useCases/schedules/ListSchedulesUseCase'
 import { ListCategoriesUseCase } from '../../business/useCases/categories/ListCategoriesUseCase'
 import { DeleteScheduleUseCase } from '../../business/useCases/schedules/deleteScheduleUseCase'
+import { UpdateTransactionUseCase } from '../../business/useCases/transactions/updateTransactionUseCase'
 import { TriggerSchedulesUseCase } from '../../business/useCases/schedules/triggerSchedulesUseCase'
 import { UpdateScheduleUseCase } from '../../business/useCases/schedules/updateScheduleUseCase'
 import { GetScheduleUseCase } from '../../business/useCases/schedules/getScheduleUseCase'
@@ -19,6 +20,7 @@ export const UseCasesModule = new ContainerModule((bind: interfaces.Bind) => {
   bind(DeleteTransactionUseCase).toSelf()
   bind(GetTransactionUseCase).toSelf()
   bind(ListTransactionsUseCase).toSelf()
+  bind(UpdateTransactionUseCase).toSelf()
 
   bind(CreateCategoryUseCase).toSelf()
   bind(UpdateCategoryUseCase).toSelf()
